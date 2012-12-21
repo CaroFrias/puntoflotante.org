@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>La Guía de la Coma Flotante - On Using Integers</title>
+	
+    <meta name="generator" content="nanoc 3.1.2">
+	
+		<meta name="Description" content="Explanation why using integers to avoid floating-point problems by having them represent e.g. cents is not a good solution.">
+	
+    <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+  </head>
+  <body>  
+    <div id="main">
+		<h1>On Using Integers</h1>
+      <p>While integer types are usually binary and by definition do not support fractions, they are exact (no <a href="/errors/rounding/">rounding errors</a> when converting from decimal integers) and can be used as a sort of “poor man’s <a href="/formats/exact/">decimal type</a>” by choosing an implicit fixed decimal point so that the smallest unit you work with can be represented as the integer 1. In practical terms, this is often put as: <strong>“To handle money, store and calculate everything in cents and format only the output”</strong>.</p>
+
+<p>This works, but has a number of <strong>severe drawbacks</strong>:</p>
+
+<ul>
+  <li>It’s more work (and more opportunity for bugs) to get it right, especially in regard to <a href="/errors/rounding/">rounding modes</a>.</li>
+  <li>Integers have complete precision, but very limited range, and when they overflow, they usually “wrap around” silently, i.e. the largest integer plus 1 becomes zero (for unsigned ints) or the negative value with the largest magnitude (for signed). This is just about the worst possible behaviour when dealing with money, for obvious reasons.</li>
+  <li>The implicit decimal point is hard to change and extremely inflexible: if you store dollars as cents, it’s simply impossible to support the <a href="http://en.wikipedia.org/wiki/Bahraini_dinar">Bahraini dinar</a>(1 dinar = 1,000 Fils) at the same time. You’d have to store the position of the decimal point with the data - the first step in implementing your own (buggy, non-standard) limited-precision decimal <a href="/formats/fp/">floating-point</a> format.</li>
+</ul>
+
+<p>Summary: <strong>using integers is not recommended.</strong> Do this only if there really is no <a href="/formats/exact/">better alternative</a> at all.</p>
+
+	  
+			<g:plusone href="http://juanlu001.github.com/comaflotante/"></g:plusone>
+			<div id="license">
+			<p>&copy; Publicado en <a href="http://juanlu001.github.com/comaflotante/">http://juanlu001.github.com/comaflotante/</a> bajo la 
+			<a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License (BY)</a></p>
+		</div>
+    </div>
+    <div id="sidebar">
+		<img src="/logo.png">
+		<h2>La Guía de la Coma Flotante</h2>
+		<ul>
+		<li><a href="/">Inicio</a></li>
+			<li><a href="/basic/">Respuestas Básicas</a></li>
+			<li><a href="/references/">Referencias</a></li>
+			<li><a href="/xkcd/">xkcd</a></li>
+		</ul>
+	  
+		<h2>Formatos Numéricos</h2>
+		<ul>
+			<li><a href="/formats/binary/">Fracciones Binarias</a></li>
+			<li><a href="/formats/fp/">Coma Flotante</a></li>
+			<li><a href="/formats/exact/">Tipos Exactos</a></li>
+			<li><a href="/formats/integer/">Sobre Usar Enteros</a></li>
+		</ul>
+	
+		<h2>Errores</h2>
+		<ul>
+			<li><a href="/errors/rounding/">Redondeo</a></li>
+			<li><a href="/errors/comparison/">Comparación</a></li>
+			<li><a href="/errors/propagation/">Propagación</a></li>
+		</ul>
+		
+		<h2>Cheat sheets</h2>
+		<ul>
+			<li><a href="/languages/csharp/">C#</a></li>
+			<li><a href="/languages/java/">Java</a></li>
+			<li><a href="/languages/javascript/">JavaScript</a></li>
+			<li><a href="/languages/perl/">Perl</a></li>
+			<li><a href="/languages/php/">PHP</a></li>
+			<li><a href="/languages/python/">Python</a></li>
+			<li><a href="/languages/sql/">SQL</a></li>
+		</ul>
+    </div>
+<a href="http://github.com/Juanlu001/floating-point-gui.de-ES"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+
+  </body>
+</html>
