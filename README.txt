@@ -1,12 +1,12 @@
-http://floating-point-gui.de aims to provide both short and simple 
-answers to the common recurring questions of novice programmers
-about floating-point numbers not "adding up" correctly, and
-more in-depth information about how IEEE 754 floats work,
-when and how to use them correctly, and what to use instead
-when they are not appropriate.
+http://comaflotante.org pretende dar respuestas cortas y sencillas
+a las preguntas recurrentes de programadores principiantes sobre
+números de coma flotante que «no se suman correctamente», e información
+más detallada sobre cómo funcionan los números decimales del IEEE 754,
+cuándo y cómo usarlos correctamente, y qué usar en su lugar cuando
+no son apropiados.
 
-The site is built using the nanoc static site generator:
-http://nanoc.stoneship.org/ (Requires the kramdown and adsf gems)
+Este sitio está hecho usando el generador de sitios estáticos nanoc:
+http://nanoc.stoneship.org/ (requiere las gemas kramdown y adsf)
 
-and published under the Creative Commons Attribution License (BY):
-http://creativecommons.org/licenses/by/3.0/
+y publicado bajo una licencia Creative Commons Atribución Unported (BY):
+http://creativecommons.org/licenses/by/3.0/deed.es
