@@ -1,6 +1,6 @@
 --- 
-title: Lo Que Todo Programador Debería Saber Sobre Aritmética de Coma Flotante
-description: Pretende dar respuestas cortas y sencillas a las preguntas recurrentes de programadores principiantes sobre números de coma flotante que «no se suman correctamente», e información más detallada sobre cómo funcionan los números decimales del IEEE 754, cuándo y cómo usarlos correctamente, y qué usar en su lugar cuando no son apropiados.
+title: Lo Que Todo Programador Debería Saber Sobre Aritmética de Punto Flotante
+description: Pretende dar respuestas cortas y sencillas a las preguntas recurrentes de programadores principiantes sobre números de punto flotante que «no se suman correctamente», e información más detallada sobre cómo funcionan los números decimales del IEEE 754, cuándo y cómo usarlos correctamente, y qué usar en su lugar cuando no son apropiados
 verification: True
 ---
 
@@ -10,7 +10,7 @@ o
 ¿Por qué mis números no se suman bien?
 ======================================
 
-O sea que has escrito algún código absurdamente simple, como por ejemplo<sup>1</sup>:
+O sea que has escrito algún código absurdamente simple, como por ejemplo:
 
 		0.1 + 0.2
 
@@ -24,10 +24,22 @@ Bueno, este sitio está aquí para:
 
 * Explicar de manera concisa por qué obtuviste ese resultado inesperado
 * Decirte cómo lidiar con este problema
-* Si te interesa, dar explicaciones detalladas de por qué los números de coma flotante tienen que funcionar así y qué otros problemas pueden surgir
+* Si te interesa, dar explicaciones detalladas de por qué los números de punto flotante tienen que funcionar así y qué otros problemas pueden surgir
 
 Deberías ir a la sección de [Respuestas Básicas](/basic/) primero - ¡pero no termines ahí!
 
-<sup>1</sup> <small>Las Academias de la Lengua [recomiendan el punto como separador para las cifras
-decimales](http://www.tex-tipografia.com/marca_decimal.html), convergiendo así con
-la notación anglosajona que es la que se utiliza en la mayoría de lenguajes de programación.</small>
+### Sobre la notación y la nomenclatura
+
+Aunque tanto la punto como el punto como marcas decimales son válidas según el
+Sistema Internacional y la norma ISO<sup>1</sup>, las Academias de la Lengua recomiendan el
+punto como separador para las cifras decimales<sup>2</sup>. Esto facilita las cosas,
+porque se converge así con la notación anglosajona que es la que se utiliza en la mayoría de
+lenguajes de programación. En este sitio se ha optado por la denominación «punto
+flotante» en lugar de «coma flotante», puesto que la Fundación del Español Urgente
+(<a href="http://www.fundeu.es/">Fundéu BBVA</a>) especificó en una consulta
+que debe haber correspondencia con el criterio adoptado para la marca decimal. 
+
+<ol>
+	<li>http://www.tex-tipografia.com/marca_decimal.html</li>
+	<li>http://www.tex-tipografia.com/ortografia_notaciones.html</li>
+</ol>

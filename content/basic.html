@@ -1,11 +1,11 @@
 --- 
 title: Respuestas Básicas
-description: Respuestas concisas a preguntas básicas sobre aritmética de coma flotante, como «¿Por qué mis números no se suman bien?»
+description: Respuestas concisas a preguntas básicas sobre aritmética de punto flotante, como «¿por qué mis números no se suman bien?»
 ---
 
-### ¿Por qué al sumar mis números, como 0.1 + 0.2, en vez de dar 0.3 dan un resultado extraño como 0.30000000000000004?
+### ¿Por qué al sumar mis números, como 0.1 + 0.2, en vez de dar 0.3 da un resultado extraño como 0.30000000000000004?
 
-Porque internamente, los ordenadores usan un formato ([coma flotante](/formats/fp) [binario](/formats/binary))
+Porque internamente, los ordenadores usan un formato ([punto flotante](/formats/fp) [binario](/formats/binary))
 que no puede representar de forma precisa números como 0.1, 0.2 o 0.3 *de ninguna manera*.
 
 Cuando el código es compilado o interpretado, tu "0.1" se redondea
@@ -35,14 +35,14 @@ Eso depende del tipo de cálculos que estés haciendo.
 ### ¿Por qué otros cálculos como 0.1 + 0.4 sí funcionan bien?
 
 En este caso, el resultado (0.5) *sí* puede ser representado de manera exacta como un
-número de coma flotante, y es posible que los errores de redondeo de los datos de partida
+número de punto flotante, y es posible que los errores de redondeo de los datos de partida
 se cancelen entre sí - aunque no se debería confiar excesivamente en esto (e.g. cuando
-esos dos números fueron almacenados en representaciones de coma flotante de diferente
+esos dos números fueron almacenados en representaciones de punto flotante de diferente
 tamaño, los errores de redondeo pueden no cancelarse entre ellos).
 
 En otros casos como 0.1 + 0.3, el resultado no es _realmente_ 0.4, pero está lo suficientemente
 cerca como para que 0.4 sea el número más corto que está más cerca del resultado que cualquier
-otro número de coma flotante. La mayoría de lenguajes presentan ese número en vez de convertir
+otro número de punto flotante. La mayoría de lenguajes presentan ese número en vez de convertir
 el resultado real a una fracción decimal.
 
 Si quieres más información, puedes acudir a las [referencias](/references/).

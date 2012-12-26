@@ -1,6 +1,6 @@
-http://comaflotante.org pretende dar respuestas cortas y sencillas
+http://puntoflotante.org pretende dar respuestas cortas y sencillas
 a las preguntas recurrentes de programadores principiantes sobre
-números de coma flotante que «no se suman correctamente», e información
+números de punto flotante que «no se suman correctamente», e información
 más detallada sobre cómo funcionan los números decimales del IEEE 754,
 cuándo y cómo usarlos correctamente, y qué usar en su lugar cuando
 no son apropiados.
