@@ -1,9 +1,9 @@
 --- 
-title: Números de Coma Flotante
-description: Explicación de cómo funcionan los números de coma flotante y para qué son útiles
+title: Números de Punto Flotante
+description: Explicación de cómo funcionan los números de punto flotante y para qué son útiles
 ---
 
-Por qué son necesarios los números de coma flotante
+Por qué son necesarios los números de punto flotante
 ---------------------------------------------------
 
 Como la memoria de los ordenadores es limitada, no puedes almacenar números
@@ -20,47 +20,51 @@ tiene que ser preciso para números de órdenes de magnitud muy diferentes. Sin
 embargo, solo se necesita precisión *relativa*. Para satisfacer al físico, debe
 ser posible hacer cálculos que involucren números de órdenes muy dispares.
 
-Básicamente, tener un número fijo de dígitos enteros y fraccionarios no es útil - y la solución es un formato con una *coma flotante*.
+Básicamente, tener un número fijo de dígitos enteros y fraccionarios no es útil - y la solución es un formato con una *punto flotante*.
 
-How floating-point numbers work
--------------------------------
-The idea is to compose a number of two main parts:
+Cómo funcionan los números de punto flotante
+--------------------------------------------
 
-* A **significand** that contains the number's digits. Negative significands represent negative numbers.
-* An **exponent** that says where the decimal (or binary) point is placed relative to the beginning of the significand. Negative exponents represent numbers that are very small (i.e. close to zero).
+La idea es descomponer el número en dos partes:
 
-Such a format satisfies all the requirements:
+* Una **mantisa** (también llamada coeficiente o significando) que contiene los dígitos del número. Mantisas negativas representan números negativos.
+* Un **exponente** que indica dónde se coloca el punto decimal (o binario) en relación al inicio de la mantisa. Exponentes negativos representan números menores que uno.
 
-* It can represent numbers at wildly different magnitudes (limited by the length of the exponent)
-* It provides the same relative accuracy at all magnitudes (limited by the length of the significand)
-* It allows calculations across magnitudes: multiplying a very large and a very small number preserves the accuracy of both in the result.
+Este formato cumple todos los requisitos:
 
-Decimal floating-point numbers usually take the form of [scientific notation](http://en.wikipedia.org/wiki/Scientific_notation) with an
-explicit point always between the 1st and 2nd digits. The exponent is
-either written explicitly including the base, or an **e** is used to
-separate it from the significand.
+* Puede representar números de órdenes de magnitud enormemente dispares (limitado por la longitud del exponente).
+* Proporciona la misma precisión relativa para todos los órdenes (limitado por la longitud de la mantisa).
+* Permite cálculos entre magnitudes: multiplicar un número muy grande y uno muy pequeño conserva la precisión de ambos en el resultado.
 
-| Significand | Exponent | Scientific notation | Fixed-point value |
-|-------------|----------|---------------------|-------------------|
+Los números de coma flotante decimales normalmente se expresan en
+[notación científica](http://es.wikipedia.org/wiki/Notaci%C3%B3n_cient%C3%ADfica) con un
+punto explícito siempre entre el primer y el segundo dígitos. El exponente o bien
+se escribe explícitamente incluyendo la base, o se usa una **e** para
+separarlo de la mantisa.
+
+| Mantisa | Exponente | Notación científica | Valor en punto fijo |
+|---------|-----------|---------------------|---------------------|
 | 1.5 | 4 | 1.5 &sdot; 10<sup>4</sup> | 15000 |
 | -2.001 | 2 | -2.001 &sdot; 10<sup>2</sup> | -200.1 |
-| 5 | -3 |  5 &sdot; 10<sup>-3</sup> | 0,005 | 
+| 5 | -3 |  5 &sdot; 10<sup>-3</sup> | 0.005 | 
 | 6.667 | -11 | 6.667e-11 | 0.0000000000667 |
 
-The standard
-------------
-Nearly all hardware and programming languages use floating-point numbers in the same binary formats, which are defined in the [IEEE 754](http://en.wikipedia.org/wiki/IEEE_754-2008) standard. The usual formats are 32 or 64 bits in total length:
+El estándar
+-----------
 
-| Format | Total bits | Significand bits | Exponent bits | Smallest number | Largest number |
-|--------|------------|------------------|---------------|-----------------|----------------|
-| Single precision | 32 | 23 + 1 sign | 8  | ca. 1.2 &sdot; 10<sup>-38</sup> | ca. 3.4 &sdot; 10<sup>38</sup>|
-| Double precision | 64 | 52 + 1 sign | 11 | ca. 5.0 &sdot; 10<sup>-324</sup> | ca. 1.8 &sdot; 10<sup>308</sup> |
+Casi todo el hardware y lenguajes de programación utilizan números de punto flotante en los mismos
+formatos binarios, que están definidos en el estándar [IEEE 754](http://es.wikipedia.org/wiki/IEEE_coma_flotante).
+Los formatos más comunes son de 32 o 64 bits de longitud total:
 
-Note that there are some peculiarities:
+| Formato | Bits totales | Bits significativos | Bits del exponente | Número más pequeño | Número más grande |
+|---------|--------------|---------------------|--------------------|--------------------|-------------------|
+| Precisión sencilla | 32 | 23 + 1 signo | 8  | ~1.2 &sdot; 10<sup>-38</sup> | ~3.4 &sdot; 10<sup>38</sup>|
+| Precisión doble | 64 | 52 + 1 signo | 11 | ~5.0 &sdot; 10<sup>-324</sup> | ~1.8 &sdot; 10<sup>308</sup> |
 
-* The **actual bit sequence** is the sign bit first, followed by the exponent and finally the significand bits.
-* The exponent does not have a sign; instead an **exponent bias** is subtracted from it (127 for single and 1023 for double precision). This, and the bit sequence, allows floating-point numbers to be compared and sorted correctly even when interpreting them as integers.
-* The significand's most significant bit is assumed to be 1 and omitted, except for special cases.
-* There are separate **positive and a negative zero** values, differing in the sign bit, where all other bits are 0. These must be considered equal even though their bit patterns are different.
-* There are special **positive and negative infinity** values, where the exponent is all 1-bits and the significand is all 0-bits. These are the results of calculations where the positive range of the exponent is exceeded, or division  of a regular number by zero.
-* There are special **not a number** (or NaN) values where the exponent is all 1-bits and the significand is *not* all 0-bits. These represent the result of various undefined calculations (like multiplying 0 and infinity, any calculation involving a NaN value, or application-specific cases). Even bit-identical NaN values must *not* be considered equal.
+Hay algunas pecularidades:
+
+* La *secuencia de bits* es primero el bit del signo, seguido del exponente y finalmente los bits significativos.
+* El exponente no tiene signo; en su lugar se le resta un **desplazamiento** (127 para sencilla y 1023 para doble precisión). Esto, junto con la secuencia de bits, permite que los números de punto flotante se puedan comparar y ordenar correctamente incluso cuando se interpretan como enteros.
+* Se asume que el bit más significativo de la mantisa es 1 y se omite, excepto para casos especiales.
+* Hay valores diferentes para **cero positivo y cero negativo**. Estos difieren en el bit del signo, mientras que todos los demás son 0. Deben ser considerados iguales aunque sus secuencias de bits sean diferentes.
+* Hay valores especiales **no numéricos** (NaN, «not a number» en inglés) en los que el exponente es todo unos y la mantisa *no* es todo ceros. Estos valores representan el resultado de algunas operaciones indefinidas (como multiplicar 0 por infinito, operaciones que involucren NaN, o casos específicos). Incluso valores NaN con idéntica secuencia de bits *no* deben ser considerados iguales.
