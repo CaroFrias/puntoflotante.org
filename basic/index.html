@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía de la Coma Flotante - Respuestas Básicas</title>
+    <title>La Guía del Punto Flotante - Respuestas Básicas</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Respuestas concisas a preguntas básicas sobre aritmética de coma flotante, como «¿Por qué mis números no se suman bien?»">
+		<meta name="Description" content="Respuestas concisas a preguntas básicas sobre aritmética de punto flotante, como «¿por qué mis números no se suman bien?»">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -15,9 +15,9 @@
   <body>  
     <div id="main">
 		<h1>Respuestas Básicas</h1>
-      <h3 id="por-qu-al-sumar-mis-nmeros-como-01--02-en-vez-de-dar-03-dan-un-resultado-extrao-como-030000000000000004">¿Por qué al sumar mis números, como 0.1 + 0.2, en vez de dar 0.3 dan un resultado extraño como 0.30000000000000004?</h3>
+      <h3 id="por-qu-al-sumar-mis-nmeros-como-01--02-en-vez-de-dar-03-da-un-resultado-extrao-como-030000000000000004">¿Por qué al sumar mis números, como 0.1 + 0.2, en vez de dar 0.3 da un resultado extraño como 0.30000000000000004?</h3>
 
-<p>Porque internamente, los ordenadores usan un formato (<a href="/formats/fp">coma flotante</a> <a href="/formats/binary">binario</a>)
+<p>Porque internamente, los ordenadores usan un formato (<a href="/formats/fp">punto flotante</a> <a href="/formats/binary">binario</a>)
 que no puede representar de forma precisa números como 0.1, 0.2 o 0.3 <em>de ninguna manera</em>.</p>
 
 <p>Cuando el código es compilado o interpretado, tu “0.1” se redondea
@@ -49,21 +49,21 @@ trabajas no eran así de precisos de todas formas.</p>
 <h3 id="por-qu-otros-clculos-como-01--04-s-funcionan-bien">¿Por qué otros cálculos como 0.1 + 0.4 sí funcionan bien?</h3>
 
 <p>En este caso, el resultado (0.5) <em>sí</em> puede ser representado de manera exacta como un
-número de coma flotante, y es posible que los errores de redondeo de los datos de partida
+número de punto flotante, y es posible que los errores de redondeo de los datos de partida
 se cancelen entre sí - aunque no se debería confiar excesivamente en esto (e.g. cuando
-esos dos números fueron almacenados en representaciones de coma flotante de diferente
+esos dos números fueron almacenados en representaciones de punto flotante de diferente
 tamaño, los errores de redondeo pueden no cancelarse entre ellos).</p>
 
 <p>En otros casos como 0.1 + 0.3, el resultado no es <em>realmente</em> 0.4, pero está lo suficientemente
 cerca como para que 0.4 sea el número más corto que está más cerca del resultado que cualquier
-otro número de coma flotante. La mayoría de lenguajes presentan ese número en vez de convertir
+otro número de punto flotante. La mayoría de lenguajes presentan ese número en vez de convertir
 el resultado real a una fracción decimal.</p>
 
 <p>Si quieres más información, puedes acudir a las <a href="/references/">referencias</a>.</p>
 
-			<g:plusone href="http://comaflotante.org/"></g:plusone>
+			<g:plusone href="http://puntoflotante.org/"></g:plusone>
 			<div id="license">
-			<p>&copy; Publicado en <a href="http://comaflotante.org/">http://comaflotante.org/</a> bajo una licencia
+			<p>&copy; Publicado en <a href="http://puntoflotante.org/">http://puntoflotante.org/</a> bajo una licencia
 			<a href="http://creativecommons.org/licenses/by/3.0/deed.es">Creative Commons Atribución Unported (BY)</a>.
 			Original en inglés por Michael Borgwardt en
 			<a href="http://floating-point-gui.de/">http://floating-point-gui.de/</a>.</p> 
@@ -71,7 +71,7 @@ el resultado real a una fracción decimal.</p>
     </div>
     <div id="sidebar">
 		<img src="/logo.png">
-		<h2>La Guía de la Coma Flotante</h2>
+		<h2>La Guía del Punto Flotante</h2>
 		<ul>
 		<li><a href="/">Inicio</a></li>
 			<li><a href="/basic/">Respuestas Básicas</a></li>
@@ -82,7 +82,7 @@ el resultado real a una fracción decimal.</p>
 		<h2>Formatos Numéricos</h2>
 		<ul>
 			<li><a href="/formats/binary/">Fracciones Binarias</a></li>
-			<li><a href="/formats/fp/">Coma Flotante</a></li>
+			<li><a href="/formats/fp/">Punto Flotante</a></li>
 			<li><a href="/formats/exact/">Tipos Exactos</a></li>
 			<li><a href="/formats/integer/">Sobre Usar Enteros</a></li>
 		</ul>
@@ -105,7 +105,7 @@ el resultado real a una fracción decimal.</p>
 			<li><a href="/languages/sql/">SQL</a></li>
 		</ul>
     </div>
-<a href="http://github.com/Juanlu001/comaflotante.org"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+<a href="http://github.com/Juanlu001/puntoflotante.org"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
 
   </body>
 </html>

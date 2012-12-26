@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía de la Coma Flotante - Floating Point Numbers</title>
+    <title>La Guía del Punto Flotante - Números de Coma Flotante</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Explanation of how floating-points numbers work and what they are good for">
+		<meta name="Description" content="Explicación de cómo funcionan los números de coma flotante y para qué son útiles">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,20 +14,26 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Floating Point Numbers</h1>
-      <h2 id="why-floating-point-numbers-are-needed">Why floating-point numbers are needed</h2>
+		<h1>Números de Coma Flotante</h1>
+      <h2 id="por-qu-son-necesarios-los-nmeros-de-coma-flotante">Por qué son necesarios los números de coma flotante</h2>
 
-<p>Since computer memory is limited, you cannot store numbers with infinite precision, no matter whether you use <a href="/formats/binary/">binary fractions</a> or decimal ones: at some point you have to cut off. But how much accuracy is needed? And <em>where</em> is it needed? How many integer digits and how many fraction digits? </p>
+<p>Como la memoria de los ordenadores es limitada, no puedes almacenar números
+con precisión infinita, no importa si usas <a href="/formats/binary/">fracciones binarias</a> o
+decimales: en algún punto tienes que cortar. Pero ¿cuánta precisión se necesita?
+¿Y <em>dónde</em> se necesita? ¿Cuántos dígitos enteros y cuántos fraccionarios?</p>
 
 <ul>
-  <li>To an engineer building a highway, it does not matter whether it’s 10 meters or 10.0001 meters wide - his measurements are probably not that accurate in the first place.</li>
-  <li>To someone designing a microchip, 0.0001 meters (a tenth of a millimeter) is a <em>huge</em> difference - But he’ll never have to deal with a distance larger than 0.1 meters.</li>
-  <li>A physicist needs to use the <a href="http://en.wikipedia.org/wiki/Speed_of_light">speed of light</a> (about 300000000) and <a href="http://en.wikipedia.org/wiki/Gravitational_constant">Newton’s gravitational constant</a> (about 0.0000000000667) together in the same calculation.</li>
+  <li>Para un ingeniero construyendo una autopista, no importa si tiene 10 metros o 10.0001 metros de ancho - posiblemente ni siquiera sus mediciones eran así de precisas.</li>
+  <li>Para alguien diseñando un microchip, 0.0001 metros (la décima parte de un milímetro) es una diferencia <em>enorme</em> - pero nunca tendrá que manejar distancias mayores de 0.1 metros.</li>
+  <li>Un físico necesita usar la <a href="http://es.wikipedia.org/wiki/Velocidad_de_la_luz">velocidad de la luz</a> (más o menos 300000000) y la <a href="http://es.wikipedia.org/wiki/Constante_de_gravitaci%C3%B3n_universal">constante de gravitación universal</a> (más o menos 0.0000000000667) juntas en el mismo cálculo.</li>
 </ul>
 
-<p>To satisfy the engineer and the chip designer, a number format has to provide accuracy for numbers at very different magnitudes. However, only <em>relative</em> accuracy is needed. To satisfy the physicist, it must be possible to do calculations that involve numbers with different magnitudes.</p>
+<p>Para satisfacer al ingeniero y al diseñador de circuitos integrados, el formato
+tiene que ser preciso para números de órdenes de magnitud muy diferentes. Sin
+embargo, solo se necesita precisión <em>relativa</em>. Para satisfacer al físico, debe
+ser posible hacer cálculos que involucren números de órdenes muy dispares.</p>
 
-<p>Basically, having a fixed number of integer and fractional digits is not useful - and the solution is a format with a <em>floating point</em>.</p>
+<p>Básicamente, tener un número fijo de dígitos enteros y fraccionarios no es útil - y la solución es un formato con una <em>coma flotante</em>.</p>
 
 <h2 id="how-floating-point-numbers-work">How floating-point numbers work</h2>
 <p>The idea is to compose a number of two main parts:</p>
@@ -132,9 +138,9 @@ separate it from the significand.</p>
   <li>There are special <strong>not a number</strong> (or NaN) values where the exponent is all 1-bits and the significand is <em>not</em> all 0-bits. These represent the result of various undefined calculations (like multiplying 0 and infinity, any calculation involving a NaN value, or application-specific cases). Even bit-identical NaN values must <em>not</em> be considered equal.</li>
 </ul>
 
-			<g:plusone href="http://comaflotante.org/"></g:plusone>
+			<g:plusone href="http://puntoflotante.org/"></g:plusone>
 			<div id="license">
-			<p>&copy; Publicado en <a href="http://comaflotante.org/">http://comaflotante.org/</a> bajo una licencia
+			<p>&copy; Publicado en <a href="http://puntoflotante.org/">http://puntoflotante.org/</a> bajo una licencia
 			<a href="http://creativecommons.org/licenses/by/3.0/deed.es">Creative Commons Atribución Unported (BY)</a>.
 			Original en inglés por Michael Borgwardt en
 			<a href="http://floating-point-gui.de/">http://floating-point-gui.de/</a>.</p> 
@@ -142,7 +148,7 @@ separate it from the significand.</p>
     </div>
     <div id="sidebar">
 		<img src="/logo.png">
-		<h2>La Guía de la Coma Flotante</h2>
+		<h2>La Guía del Punto Flotante</h2>
 		<ul>
 		<li><a href="/">Inicio</a></li>
 			<li><a href="/basic/">Respuestas Básicas</a></li>
@@ -153,7 +159,7 @@ separate it from the significand.</p>
 		<h2>Formatos Numéricos</h2>
 		<ul>
 			<li><a href="/formats/binary/">Fracciones Binarias</a></li>
-			<li><a href="/formats/fp/">Coma Flotante</a></li>
+			<li><a href="/formats/fp/">Punto Flotante</a></li>
 			<li><a href="/formats/exact/">Tipos Exactos</a></li>
 			<li><a href="/formats/integer/">Sobre Usar Enteros</a></li>
 		</ul>
@@ -176,7 +182,7 @@ separate it from the significand.</p>
 			<li><a href="/languages/sql/">SQL</a></li>
 		</ul>
     </div>
-<a href="http://github.com/Juanlu001/comaflotante.org"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
+<a href="http://github.com/Juanlu001/puntoflotante.org"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
 
   </body>
 </html>
