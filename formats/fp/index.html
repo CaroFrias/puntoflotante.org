@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Números de Coma Flotante</title>
+    <title>La Guía del Punto Flotante - Números de Punto Flotante</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Explicación de cómo funcionan los números de coma flotante y para qué son útiles">
+		<meta name="Description" content="Explicación de cómo funcionan los números de punto flotante y para qué son útiles">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,8 +14,8 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Números de Coma Flotante</h1>
-      <h2 id="por-qu-son-necesarios-los-nmeros-de-coma-flotante">Por qué son necesarios los números de coma flotante</h2>
+		<h1>Números de Punto Flotante</h1>
+      <h2 id="por-qu-son-necesarios-los-nmeros-de-punto-flotante">Por qué son necesarios los números de punto flotante</h2>
 
 <p>Como la memoria de los ordenadores es limitada, no puedes almacenar números
 con precisión infinita, no importa si usas <a href="/formats/binary/">fracciones binarias</a> o
@@ -33,36 +33,38 @@ tiene que ser preciso para números de órdenes de magnitud muy diferentes. Sin
 embargo, solo se necesita precisión <em>relativa</em>. Para satisfacer al físico, debe
 ser posible hacer cálculos que involucren números de órdenes muy dispares.</p>
 
-<p>Básicamente, tener un número fijo de dígitos enteros y fraccionarios no es útil - y la solución es un formato con una <em>coma flotante</em>.</p>
+<p>Básicamente, tener un número fijo de dígitos enteros y fraccionarios no es útil - y la solución es un formato con una <em>punto flotante</em>.</p>
 
-<h2 id="how-floating-point-numbers-work">How floating-point numbers work</h2>
-<p>The idea is to compose a number of two main parts:</p>
+<h2 id="cmo-funcionan-los-nmeros-de-punto-flotante">Cómo funcionan los números de punto flotante</h2>
 
-<ul>
-  <li>A <strong>significand</strong> that contains the number’s digits. Negative significands represent negative numbers.</li>
-  <li>An <strong>exponent</strong> that says where the decimal (or binary) point is placed relative to the beginning of the significand. Negative exponents represent numbers that are very small (i.e. close to zero).</li>
-</ul>
-
-<p>Such a format satisfies all the requirements:</p>
+<p>La idea es descomponer el número en dos partes:</p>
 
 <ul>
-  <li>It can represent numbers at wildly different magnitudes (limited by the length of the exponent)</li>
-  <li>It provides the same relative accuracy at all magnitudes (limited by the length of the significand)</li>
-  <li>It allows calculations across magnitudes: multiplying a very large and a very small number preserves the accuracy of both in the result.</li>
+  <li>Una <strong>mantisa</strong> (también llamada coeficiente o significando) que contiene los dígitos del número. Mantisas negativas representan números negativos.</li>
+  <li>Un <strong>exponente</strong> que indica dónde se coloca el punto decimal (o binario) en relación al inicio de la mantisa. Exponentes negativos representan números menores que uno.</li>
 </ul>
 
-<p>Decimal floating-point numbers usually take the form of <a href="http://en.wikipedia.org/wiki/Scientific_notation">scientific notation</a> with an
-explicit point always between the 1st and 2nd digits. The exponent is
-either written explicitly including the base, or an <strong>e</strong> is used to
-separate it from the significand.</p>
+<p>Este formato cumple todos los requisitos:</p>
+
+<ul>
+  <li>Puede representar números de órdenes de magnitud enormemente dispares (limitado por la longitud del exponente).</li>
+  <li>Proporciona la misma precisión relativa para todos los órdenes (limitado por la longitud de la mantisa).</li>
+  <li>Permite cálculos entre magnitudes: multiplicar un número muy grande y uno muy pequeño conserva la precisión de ambos en el resultado.</li>
+</ul>
+
+<p>Los números de coma flotante decimales normalmente se expresan en
+<a href="http://es.wikipedia.org/wiki/Notaci%C3%B3n_cient%C3%ADfica">notación científica</a> con un
+punto explícito siempre entre el primer y el segundo dígitos. El exponente o bien
+se escribe explícitamente incluyendo la base, o se usa una <strong>e</strong> para
+separarlo de la mantisa.</p>
 
 <table>
   <thead>
     <tr>
-      <th>Significand</th>
-      <th>Exponent</th>
-      <th>Scientific notation</th>
-      <th>Fixed-point value</th>
+      <th>Mantisa</th>
+      <th>Exponente</th>
+      <th>Notación científica</th>
+      <th>Valor en punto fijo</th>
     </tr>
   </thead>
   <tbody>
@@ -82,7 +84,7 @@ separate it from the significand.</p>
       <td>5</td>
       <td>-3</td>
       <td>5 ⋅ 10<sup>-3</sup></td>
-      <td>0,005</td>
+      <td>0.005</td>
     </tr>
     <tr>
       <td>6.667</td>
@@ -93,49 +95,51 @@ separate it from the significand.</p>
   </tbody>
 </table>
 
-<h2 id="the-standard">The standard</h2>
-<p>Nearly all hardware and programming languages use floating-point numbers in the same binary formats, which are defined in the <a href="http://en.wikipedia.org/wiki/IEEE_754-2008">IEEE 754</a> standard. The usual formats are 32 or 64 bits in total length:</p>
+<h2 id="el-estndar">El estándar</h2>
+
+<p>Casi todo el hardware y lenguajes de programación utilizan números de punto flotante en los mismos
+formatos binarios, que están definidos en el estándar <a href="http://es.wikipedia.org/wiki/IEEE_coma_flotante">IEEE 754</a>.
+Los formatos más comunes son de 32 o 64 bits de longitud total:</p>
 
 <table>
   <thead>
     <tr>
-      <th>Format</th>
-      <th>Total bits</th>
-      <th>Significand bits</th>
-      <th>Exponent bits</th>
-      <th>Smallest number</th>
-      <th>Largest number</th>
+      <th>Formato</th>
+      <th>Bits totales</th>
+      <th>Bits significativos</th>
+      <th>Bits del exponente</th>
+      <th>Número más pequeño</th>
+      <th>Número más grande</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Single precision</td>
+      <td>Precisión sencilla</td>
       <td>32</td>
-      <td>23 + 1 sign</td>
+      <td>23 + 1 signo</td>
       <td>8</td>
-      <td>ca. 1.2 ⋅ 10<sup>-38</sup></td>
-      <td>ca. 3.4 ⋅ 10<sup>38</sup></td>
+      <td>~1.2 ⋅ 10<sup>-38</sup></td>
+      <td>~3.4 ⋅ 10<sup>38</sup></td>
     </tr>
     <tr>
-      <td>Double precision</td>
+      <td>Precisión doble</td>
       <td>64</td>
-      <td>52 + 1 sign</td>
+      <td>52 + 1 signo</td>
       <td>11</td>
-      <td>ca. 5.0 ⋅ 10<sup>-324</sup></td>
-      <td>ca. 1.8 ⋅ 10<sup>308</sup></td>
+      <td>~5.0 ⋅ 10<sup>-324</sup></td>
+      <td>~1.8 ⋅ 10<sup>308</sup></td>
     </tr>
   </tbody>
 </table>
 
-<p>Note that there are some peculiarities:</p>
+<p>Hay algunas pecularidades:</p>
 
 <ul>
-  <li>The <strong>actual bit sequence</strong> is the sign bit first, followed by the exponent and finally the significand bits.</li>
-  <li>The exponent does not have a sign; instead an <strong>exponent bias</strong> is subtracted from it (127 for single and 1023 for double precision). This, and the bit sequence, allows floating-point numbers to be compared and sorted correctly even when interpreting them as integers.</li>
-  <li>The significand’s most significant bit is assumed to be 1 and omitted, except for special cases.</li>
-  <li>There are separate <strong>positive and a negative zero</strong> values, differing in the sign bit, where all other bits are 0. These must be considered equal even though their bit patterns are different.</li>
-  <li>There are special <strong>positive and negative infinity</strong> values, where the exponent is all 1-bits and the significand is all 0-bits. These are the results of calculations where the positive range of the exponent is exceeded, or division  of a regular number by zero.</li>
-  <li>There are special <strong>not a number</strong> (or NaN) values where the exponent is all 1-bits and the significand is <em>not</em> all 0-bits. These represent the result of various undefined calculations (like multiplying 0 and infinity, any calculation involving a NaN value, or application-specific cases). Even bit-identical NaN values must <em>not</em> be considered equal.</li>
+  <li>La <em>secuencia de bits</em> es primero el bit del signo, seguido del exponente y finalmente los bits significativos.</li>
+  <li>El exponente no tiene signo; en su lugar se le resta un <strong>desplazamiento</strong> (127 para sencilla y 1023 para doble precisión). Esto, junto con la secuencia de bits, permite que los números de punto flotante se puedan comparar y ordenar correctamente incluso cuando se interpretan como enteros.</li>
+  <li>Se asume que el bit más significativo de la mantisa es 1 y se omite, excepto para casos especiales.</li>
+  <li>Hay valores diferentes para <strong>cero positivo y cero negativo</strong>. Estos difieren en el bit del signo, mientras que todos los demás son 0. Deben ser considerados iguales aunque sus secuencias de bits sean diferentes.</li>
+  <li>Hay valores especiales <strong>no numéricos</strong> (NaN, «not a number» en inglés) en los que el exponente es todo unos y la mantisa <em>no</em> es todo ceros. Estos valores representan el resultado de algunas operaciones indefinidas (como multiplicar 0 por infinito, operaciones que involucren NaN, o casos específicos). Incluso valores NaN con idéntica secuencia de bits <em>no</em> deben ser considerados iguales.</li>
 </ul>
 
 			<g:plusone href="http://puntoflotante.org/"></g:plusone>
@@ -151,17 +155,17 @@ separate it from the significand.</p>
 		<h2>La Guía del Punto Flotante</h2>
 		<ul>
 		<li><a href="/">Inicio</a></li>
-			<li><a href="/basic/">Respuestas Básicas</a></li>
+			<li><a href="/basic/">Respuestas básicas</a></li>
 			<li><a href="/references/">Referencias</a></li>
 			<li><a href="/xkcd/">xkcd</a></li>
 		</ul>
 	  
 		<h2>Formatos Numéricos</h2>
 		<ul>
-			<li><a href="/formats/binary/">Fracciones Binarias</a></li>
-			<li><a href="/formats/fp/">Punto Flotante</a></li>
-			<li><a href="/formats/exact/">Tipos Exactos</a></li>
-			<li><a href="/formats/integer/">Sobre Usar Enteros</a></li>
+			<li><a href="/formats/binary/">Fracciones binarias</a></li>
+			<li><a href="/formats/fp/">Punto flotante</a></li>
+			<li><a href="/formats/exact/">Tipos exactos</a></li>
+			<li><a href="/formats/integer/">Sobre usar enteros</a></li>
 		</ul>
 	
 		<h2>Errores</h2>
