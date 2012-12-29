@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Floating-point cheat sheet for JavaScript</title>
+    <title>La Guía del Punto Flotante - Cheat sheet de punto flotante para JavaScript</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Tips for using floating-point and decimal numbers in JavaScript">
+		<meta name="Description" content="Trucos para usar punto flotante y números decimales en JavaScript">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,16 +14,20 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Floating-point cheat sheet for JavaScript</h1>
-      <h2 id="floating-point-types">Floating-Point Types</h2>
-<p>JavaScript is dynamically typed and will often convert implicitly between strings and floating-point numbers (which are IEEE 64 bit values). To force a variable to floating-point, use the global <code>parseFloat()</code> function.</p>
+		<h1>Cheat sheet de punto flotante para JavaScript</h1>
+      <h2 id="tipos-de-punto-flotante">Tipos de punto flotante</h2>
+
+<p>JavaScript tiene tipado dinámico y a veces convertirá implícitamente entre cadenas
+y números de punto flotante (que son valores IEEE de 64 bits). Para forzar una variable
+a punto flotante, utiliza la función <code>parseFloat()</code>.</p>
 
 <pre><code>	var num = parseFloat("3.5");
 </code></pre>
 
-<h2 id="decimal-types">Decimal Types</h2>
+<h2 id="tipos-decimales">Tipos decimales</h2>
 
-<p>The best decimal type for JavaScript seems to be a port of <a href="/languages/java/">Java’s</a> <code>BigDecimal</code> class, which also supports <a href="/errors/rounding/">rounding modes</a>:</p>
+<p>El mejor tipo decimal para JavaScript parece ser una migración de la clase de
+<a href="/languages/java/">Java</a> <code>BigDecimal</code>, que también soporta <a href="/errors/rounding/">métodos de redondeo</a>:</p>
 
 <pre><code>	var a = new BigDecimal("0.01");
 	var b = new BigDecimal("0.02");
@@ -31,20 +35,21 @@
 	var d = c.setScale(1, BigDecimal.prototype.ROUND_HALF_UP);
 </code></pre>
 
-<h2 id="how-to-round">How to Round</h2>
+<h2 id="cmo-redondear">Cómo redondear</h2>
 
 <pre><code>	var num = 5.123456;
-	num.toPrecision(1) //returns 5 as string
-	num.toPrecision(2) //returns 5.1 as string
-	num.toPrecision(4) //returns 5.123 as string
+	num.toPrecision(1) //Devuelve 5 como una cadena
+	num.toPrecision(2) //Devuelve 5.1 como una cadena
+	num.toPrecision(4) //Devuelve 5.123 como una cadena
 </code></pre>
 
-<p>Using a specific rounding mode:</p>
+<p>Utilizando un método de redondeo específico:</p>
 
 <pre><code>	new BigDecimal("1.25").setScale(1, BigDecimal.prototype.ROUND_HALF_UP);
 </code></pre>
 
-<h2 id="resources">Resources</h2>
+<h2 id="recursos">Recursos</h2>
+
 <ul>
   <li><a href="https://github.com/dtrebbien/BigDecimal.js">BigDecimal for JavaScript</a></li>
   <li><a href="https://developer.mozilla.org/en/JavaScript/Reference">Core JavaScript Reference</a><br />

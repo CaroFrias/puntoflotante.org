@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Floating-point cheat sheet for Java</title>
+    <title>La Guía del Punto Flotante - Cheat sheet de punto flotante para Java</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Tips for using floating-point and decimal numbers in Java">
+		<meta name="Description" content="Trucos para usar punto flotante y números decimales en Java">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,50 +14,60 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Floating-point cheat sheet for Java</h1>
-      <h2 id="floating-point-types">Floating-Point Types</h2>
-<p>Java has <a href="/formats/fp/">IEEE 754</a> single and double precision types supported by keywords:</p>
+		<h1>Cheat sheet de punto flotante para Java</h1>
+      <h2 id="tipos-de-punto-flotante">Tipos de punto flotante</h2>
 
-<pre><code>	float f = 0.1f; // 32 bit float, note f suffix
-	double d = 0.1d; // 64 bit float, suffix optional
+<p>Java tiene tipos de precisión sencilla y doble del <a href="/formats/fp/">IEEE 754</a> soportados
+por palabras clave:</p>
+
+<pre><code>	float f = 0.1f; // punto flotante de 32 bits, nótese el sufijo f
+	double d = 0.1d; // punto flotante de 64 bits, sufijo opcional
 </code></pre>
 
-<p>The <code>strictfp</code> keyword on classes, interfaces and methods forces all intermediate results of floating-point calculations to be IEEE 754 values as well, guaranteeing identical results on all platforms. Without that keyword, implementations can use an extended exponent range where available, resulting in more precise results and faster execution on many common CPUs.</p>
+<p>La palabra clave <code>strictfp</code> en las clases, interfaces y métodos fuerza también
+a que todos los resultados intermedios de cálculos en punto flotante sean
+valores IEEE 754, garantizando resultados idénticos en todas las plataformas.
+Sin esa palabra clave, las implementaciones pueden usar un rango extendido para
+el exponente, llevando a resultados más precisos y ejecuciones más rápidas
+en bastantes CPUs.</p>
 
-<h2 id="decimal-types">Decimal Types</h2>
-<p>Java has an <a href="/formats/exact/">arbitrary-precision</a> decimal type named <code>java.math.BigDecimal</code>, which
-also allows to choose the <a href="/errors/rounding/">rounding mode</a>.</p>
+<h2 id="tipos-decimales">Tipos decimales</h2>
+
+<p>Java tiene un tipo decimal de <a href="/formats/exact/">precisión arbitraria</a> llamado
+<code>java.math.BigDecimal</code>, que también permite elegir el <a href="/errors/rounding/">método de redondeo</a>.</p>
 
 <pre><code>	BigDecimal a = new BigDecimal("0.1");
 	BigDecimal b = new BigDecimal("0.2");
-	BigDecimal c = a.add(b); // returns a BigDecimal representing exactly 0.3
+	BigDecimal c = a.add(b); // Devuelve un BigDecimal que representa exactamente 0.3
 </code></pre>
 
-<h2 id="how-to-round">How to Round</h2>
-<p>To get a String:</p>
+<h2 id="cmo-redondear">Cómo redondear</h2>
 
-<pre><code>	String.format("%.2f", 1.2399) // returns "1.24"
-	String.format("%.3f", 1.2399) // returns "1.240"
-	String.format("%.2f", 1.2) // returns "1.20"
+<p>Para obtener una cadena:</p>
+
+<pre><code>	String.format("%.2f", 1.2399) // Devuelve "1.24"
+	String.format("%.3f", 1.2399) // Devuelve "1.240"
+	String.format("%.2f", 1.2) // Devuelve "1.20"
 </code></pre>
 
-<p>To print to standard output (or any <code>PrintStream</code>):</p>
+<p>Para imprimir por la salida estándar (o cualquier <code>PrintStream</code>):</p>
 
-<pre><code>	System.out.printf("%.2f", 1.2399) // same syntax as String.format()
+<pre><code>	System.out.printf("%.2f", 1.2399) // Misma sintaxis que String.format()
 </code></pre>
 
-<p>If you don’t want trailing zeroes:</p>
+<p>Si no quieres ceros a la derecha:</p>
 
-<pre><code>	new DecimalFormat("0.00").format(1.2)// returns "1.20"
-	new DecimalFormat("0.##").format(1.2)// returns "1.2"
+<pre><code>	new DecimalFormat("0.00").format(1.2)// Devuelve "1.20"
+	new DecimalFormat("0.##").format(1.2)// Devuelve "1.2"
 </code></pre>
 
-<p>If you need a specific <a href="/errors/rounding/">rounding mode</a>:</p>
+<p>Si necesitas un <a href="/errors/rounding/">método de redondeo</a> específico:</p>
 
-<pre><code>	new BigDecimal("1.25").setScale(1, RoundingMode.HALF_EVEN); // returns 1.2
+<pre><code>	new BigDecimal("1.25").setScale(1, RoundingMode.HALF_EVEN); // Devuelve 1.2
 </code></pre>
 
-<h2 id="resources">Resources</h2>
+<h2 id="recursos">Recursos</h2>
+
 <ul>
   <li><a href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html">Java Language Specification</a><br />
     <ul>

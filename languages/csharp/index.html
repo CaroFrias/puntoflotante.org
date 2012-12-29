@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Floating-point cheat sheet for C#</title>
+    <title>La Guía del Punto Flotante - Cheat sheet de punto flotante para C#</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Tips for using floating-point and decimal numbers in C#">
+		<meta name="Description" content="Trucos para usar punto flotante y números decimales en C#">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,28 +14,34 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Floating-point cheat sheet for C#</h1>
-      <h2 id="floating-point-types">Floating-Point Types</h2>
-<p>C# has <a href="/formats/fp/">IEEE 754</a> single and double precision types supported by keywords:</p>
+		<h1>Cheat sheet de punto flotante para C#</h1>
+      <h2 id="tipos-de-punto-flotante">Tipos de punto flotante</h2>
 
-<pre><code>	float f = 0.1f; // 32 bit float, note f suffix
-	double d = 0.1d; // 64 bit float, suffix optional
+<p>C# tiene tipos de precisión sencilla y doble del <a href="/formats/fp/">IEEE 754</a>
+soportados por palabras clave:</p>
+
+<pre><code>	float f = 0.1f; // punto flotante de 32 bits, nótese el sufijo f
+	double d = 0.1d; // punto flotante de 64 bits, sufijo opcional
 </code></pre>
 
-<h2 id="decimal-types">Decimal Types</h2>
-<p>C# has a 128 bit <a href="/formats/exact/">limited-precision</a> decimal type denoted by the keyword
-<code>decimal</code>:</p>
+<h2 id="tipos-decimales">Tipos decimales</h2>
 
-<pre><code>	decimal myMoney = 300.1m; // note m suffix on the literal
+<p>C# tiene un tipo decimal de 128 bit de <a href="/formats/exact/">precisión limitada</a>
+denotado con la palabra clave <code>decimal</code>:</p>
+
+<pre><code>	decimal myMoney = 300.1m; // Nótese el sufijo m en el literal
 </code></pre>
 
-<h2 id="how-to-round">How to Round</h2>
-<p>The <code>Math.Round()</code> method works with the double and decimal types, and allows you to specify a <a href="/errors/rounding/">rounding mode</a>:</p>
+<h2 id="cmo-redondear">Cómo redondear</h2>
 
-<pre><code>	Math.Round(1.25m, 1, MidpointRounding.AwayFromZero); // returns 1.3
+<p>El método <code>Math.Round()</code> funciona con los tipos <code>double</code> y <code>decimal</code>, 
+y permite especificar el <a href="/errors/rounding/">método de redondeo</a>:</p>
+
+<pre><code>	Math.Round(1.25m, 1, MidpointRounding.AwayFromZero); // Devuelve 1.3
 </code></pre>
 
-<h2 id="resources">Resources</h2>
+<h2 id="recursos">Recursos</h2>
+
 <ul>
   <li><a href="http://msdn.microsoft.com/en-us/library/618ayhy6%28v=VS.80%29.aspx">C# Reference</a>
     <ul>

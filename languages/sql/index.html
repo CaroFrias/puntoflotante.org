@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Floating-point cheat sheet for SQL</title>
+    <title>La Guía del Punto Flotante - Cheat sheet de punto flotante para SQL</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Tips for using floating-point and decimal numbers in SQL">
+		<meta name="Description" content="Trucos para usar punto flotante y números decimales en SQL">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,35 +14,43 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Floating-point cheat sheet for SQL</h1>
-      <h2 id="floating-point-types">Floating-Point Types</h2>
-<p>The SQL standard defines three binary floating-point types:</p>
+		<h1>Cheat sheet de punto flotante para SQL</h1>
+      <h2 id="tipos-de-punto-flotante">Tipos de punto flotante</h2>
+
+<p>El estándar SQL define tres tipos de punto flotante binarios:</p>
 
 <ul>
-  <li><code>REAL</code> has implementation-dependant precision (usually maps to a hardware-supported type like IEEE 754 single or double precision)</li>
-  <li><code>DOUBLE PRECISION</code> has implementation-dependant precision which is greater than <code>REAL</code> (usually maps to IEEE 754 double precision)</li>
-  <li><code>FLOAT(N)</code> has at least <code>N</code> binary digits of precision, with an implementation-dependant maximum for <code>N</code></li>
+  <li><code>REAL</code> tiene precisión dependiente de la implementación (normalmente se asocia a un tipo a nivel de hardware como precisión sencilla o doble del IEEE 754).</li>
+  <li><code>DOUBLE PRECISION</code> tiene precisión dependiente de la implementación que es mayor que la de <code>REAL</code> (normalmente se asocia al precisión doble del IEEE 754).</li>
+  <li><code>FLOAT(N)</code> tiene al menos <code>N</code> dígitos binarios de precisión, con un máximo para <code>N</code> que depende de la implementación.</li>
 </ul>
 
-<p>The exponent range for all three types is implementation-dependant as well.</p>
+<p>El rango del exponente para los tres tipos también depende de la implementación.</p>
 
-<h2 id="decimal-types">Decimal Types</h2>
-<p>The standard defines two fixed-point decimal types:</p>
+<h2 id="tipos-decimales">Tipos decimales</h2>
+
+<p>El estándar define dos tipos decimales de punto fijo:</p>
 
 <ul>
-  <li><code>NUMERIC(M,N)</code> has exactly <code>M</code> total digits, <code>N</code> of them after the decimal point</li>
-  <li><code>DECIMAL(M,N)</code> is the same as <code>NUMERIC(M,N)</code>, except that it is allowed to have more than <code>M</code> total digits</li>
+  <li><code>NUMERIC(M,N)</code> tiene exactamente <code>M</code> dígitos en total, <code>N</code> de los cuales después del punto decimal.</li>
+  <li><code>DECIMAL(M,N)</code> es lo mismo que <code>NUMERIC(M,N)</code>, excepto porque permite tener más de <code>M</code> dígitos totales.</li>
 </ul>
 
-<p>The maximum values of <code>M</code> and <code>M</code> are implementation-dependant. Vendors often implement the two types identically.</p>
+<p>Los valores máximos de <code>M</code> y <code>N</code> dependen de la implementación. Los proveedores
+normalmente implementan los dos tipos de manera idéntica.</p>
 
-<h2 id="how-to-round">How to Round</h2>
+<h2 id="cmo-redondear">Cómo redondear</h2>
 
-<p>The SQL standard defines no explicit rounding, but most vendors provide a <code>ROUND()</code> or <code>TRUNC()</code> function.</p>
+<p>El estándar SQL no define explícitamente el redondeo, pero la mayoría de los
+proveedores proporciona una función <code>ROUND()</code> o <code>TRUNC()</code>.</p>
 
-<p>However, it usually makes little sense to round within the database, since its job is <em>storing</em> data, while rounding is an aspect of <em>displaying</em> data, and should therefore be done by the code in the presentation layer.</p>
+<p>Sin embargo, normalmente no tiene mucho sentido redondear dentro de la base de
+datos, puesto que su función es <em>almacenar</em> los datos, mientras que redondear
+es un aspecto de la <em>representación</em> de los datos, y debe por tanto hacerse
+en el código de la capa de presentación.</p>
 
-<h2 id="resources">Resources</h2>
+<h2 id="recursos">Recursos</h2>
+
 <ul>
   <li><a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=38640">Official ISO SQL 2008 standard (non-free)</a>  </li>
   <li><a href="http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt">SQL 92 draft (free)</a></li>

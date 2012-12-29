@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Floating-point cheat sheet for Perl</title>
+    <title>La Guía del Punto Flotante - Cheat sheet de punto flotante para Perl</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Tips for using floating-point and decimal numbers in Perl">
+		<meta name="Description" content="Trucos para usar punto flotante y números decimales en Perl">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,57 +14,70 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Floating-point cheat sheet for Perl</h1>
-      <h2 id="floating-point-types">Floating-Point Types</h2>
-<p>Perl supports platform-native floating-point as scalar values; in practice this usually means <a href="/formats/fp/">IEEE 754</a> double precision.</p>
+		<h1>Cheat sheet de punto flotante para Perl</h1>
+      <h2 id="tipos-de-punto-flotante">Tipos de punto flotante</h2>
 
-<h2 id="exact-types">Exact Types</h2>
-<p>Perl can also store decimal numbers as strings, but the builtin arithmetic operators will convert them to integer or floating-point values to perform the operation.</p>
+<p>Perl soporta números de punto flotante nativos de la plataforma como valores
+escalares; en la práctica esto significa precisión doble del <a href="/formats/fp/">IEEE 754</a>.</p>
 
-<p>The <code>Math::BigFloat</code> extension provides an arbitrary-precision <a href="/formats/exact/">decimal type</a>:</p>
+<h2 id="tipos-exactos">Tipos exactos</h2>
+
+<p>Perl también puede almacenar números decimales como cadenas, pero los operadores
+aritméticos integrados los convertirán a enteros o a valores de punto flotante
+para realizar la operación.</p>
+
+<p>La extensión <code>Math::BigFloat</code> proporciona un <a href="/formats/exact/">tipo decimal</a> de
+precisión arbitraria:</p>
 
 <pre><code>	use Math::BigFloat ':constant'
-	my $f = 0.1 + 0.2; # returns exactly 0.3
+	my $f = 0.1 + 0.2; # Devuelve exactamente 0.3
 </code></pre>
 
-<p>The <code>Number::Fraction</code> extension provides a fraction type that overloads the arithmetic operators with <a href="/formats/exact/">symbolic</a> fraction arithmetic:</p>
+<p>La extensión <code>Number::Fraction</code> proporciona un tipo de datos fraccionario que 
+sobrecarga los operadores con aritmética <a href="/formats/exact/">simbólica</a> para fracciones:</p>
 
 <pre><code>	use Number::Fraction ':constants';
-	my $f = '1/2' - '1/3'; # returns 1/6
+	my $f = '1/2' - '1/3'; # Devuelve 1/6
 </code></pre>
 
-<p>The <code>Math::BigRat</code> extension provides similar functionality. Its advantage is compatibility with the
-<code>Math::BigInt</code> and <code>Math::BigFloat</code> extensions, but it does not seem to support fraction literals.</p>
+<p>La extensión <code>Math::BigRat</code> proporciona funcionalidad similar. Su ventaja es
+compatibilidad con las extensiones <code>Math::BigInt</code> y <code>Math::BigFloat</code>, pero
+no parece soportar literales fraccionarios.</p>
 
-<h2 id="how-to-round">How to Round</h2>
-<p>To get a string:</p>
+<h2 id="cmo-redondear">Cómo redondear</h2>
 
-<pre><code>	$result = sprintf("%.2f", 1.2345); # returns 1.23 
+<p>Para obtener una cadena:</p>
+
+<pre><code>	$result = sprintf("%.2f", 1.2345); # Devuelve 1.23 
 </code></pre>
 
-<p>To format output:</p>
+<p>Para formatear la salida:</p>
 
-<pre><code>	printf("%.2f", 1.2); # prints 1.20
+<pre><code>	printf("%.2f", 1.2); # Imprime 1.20
 </code></pre>
 
-<p>Note that this implicitly uses <a href="/errors/rounding/">round-to-even</a>. The variable <code>$#</code> contains the default format for printing numbers, but its use is considered deprecated.</p>
+<p>Ten en cuenta que esto utiliza implícitamente <a href="/errors/rounding/">mitad al par</a>.
+La variable <code>$#</code> contiene el formato por defecto para imprimir números, pero
+su uso se considera obsoleto.</p>
 
-<p>The <code>Math::Round</code> extension provides various functions for rounding floating-point values:</p>
+<p>La extensión <code>Math::Round</code> proporciona varias funciones para redondear valores
+de punto flotante:</p>
 
 <pre><code>	use Math::Round qw(:all);
-	$result = nearest(.1, 4.567) # prints 4.6
-	$result = nearest(.01, 4.567) # prints 4.57
+	$result = nearest(.1, 4.567) # Imprime 4.6
+	$result = nearest(.01, 4.567) # Imprime 4.57
 </code></pre>
 
-<p>The <code>Math::BigFloat</code> extension also supports various <a href="/errors/rounding/">rounding modes</a>:</p>
+<p>La extensión <code>Math::BigFloat</code> también soporta varios <a href="/errors/rounding/">métodos de redondeo</a>:</p>
 
 <pre><code>	use Math::BigFloat;
 	my $n = Math::BigFloat-&gt;new(123.455);
-	my $f1 = $n-&gt;round('','-2','common'); # returns 123.46
-	my $f2 = $n-&gt;round('','-2','zero'); # returns 123.45
+	my $f1 = $n-&gt;round('','-2','common'); # Devuelve 123.46
+	my $f2 = $n-&gt;round('','-2','zero'); # Devuelve 123.45
 </code></pre>
 
-<h2 id="resources">Resources</h2>
+<h2 id="recursos">Recursos</h2>
+
 <ul>
   <li><a href="http://perldoc.perl.org/perlnumber.html">Semantics of numbers and numeric operations in Perl</a></li>
   <li><a href="http://perldoc.perl.org/functions/sprintf.html">sprintf function</a></li>

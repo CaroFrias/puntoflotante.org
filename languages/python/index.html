@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Floating-point cheat sheet for Python</title>
+    <title>La Guía del Punto Flotante - Cheat sheet de punto flotante para Python</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Tips for using floating-point and decimal numbers in Python">
+		<meta name="Description" content="Trucos para usar punto flotante y números decimales en Python">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,41 +14,53 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Floating-point cheat sheet for Python</h1>
-      <h2 id="floating-point-types">Floating-Point Types</h2>
-<p>Almost all platforms map Python floats to <a href="/formats/fp/">IEEE 754</a>
-double precision.</p>
+		<h1>Cheat sheet de punto flotante para Python</h1>
+      <h2 id="tipos-de-punto-flotante">Tipos de punto flotante</h2>
+
+<p>Casi todas las plataformas asocian los <code>float</code> de Python a números de punto
+flotante de doble precisión del <a href="/formats/fp/">IEEE 754</a>.</p>
 
 <pre><code>	f = 0.1 
 </code></pre>
 
-<h2 id="decimal-types">Decimal Types</h2>
-<p>Python has an <a href="/formats/exact/">arbitrary-precision</a> decimal type named <code>Decimal</code> in the <code>decimal</code> module, which also allows to choose the <a href="/errors/rounding/">rounding mode</a>.</p>
+<h2 id="tipos-decimales">Tipos decimales</h2>
+
+<p>Python tiene un tipo de <a href="/formats/exact/">precision arbitraria</a> decimal llamado
+<code>Decimal</code> en el módulo <code>decimal</code>, que también permite elegir el <a href="/errors/rounding/">método de
+redondeo</a>.</p>
 
 <pre><code>	a = Decimal('0.1')
 	b = Decimal('0.2')
-	c = a + b # returns a Decimal representing exactly 0.3
+	c = a + b # Devuelve un Decimal que representa exactamente 0.3
 </code></pre>
 
-<h2 id="how-to-round">How to Round</h2>
-<p>To get a string:</p>
+<h2 id="cmo-redondear">Cómo redondear</h2>
 
-<pre><code>	"%.2f" % 1.2399 # returns "1.24"
-	"%.3f" % 1.2399 # returns "1.240"
-	"%.2f" % 1.2 # returns "1.20"
+<p>Para obtener una cadena:</p>
+
+<pre><code>	"{:.2f}".format(1.2399)  # Devuelve "1.24"
+	"{:.3f}".format(1.2399)  # Devuelve "1.240"
+	"{:.2f}".format(1.2)  # Devuelve "1.20"
 </code></pre>
 
-<p>To print to standard output:</p>
+<p>Para imprimir por la salida estándar (Python 2.x):</p>
 
-<pre><code>	print "%.2f" % 1.2399 # just use print and string formatting
+<pre><code>	print "{:.2f}".format(1.2399)
 </code></pre>
 
-<p>Specific <a href="/errors/rounding/">rounding modes</a> and other parameters can be defined in a Context object:</p>
+<p>y en Python 3.x:</p>
+
+<pre><code>	print("{:.2f}".format(1.2399))
+</code></pre>
+
+<p><a href="/errors/rounding/">Métodos de redondeo</a> específicos y otros parámetros se pueden
+definir enun objeto <code>Context</code>:</p>
 
 <pre><code>	getcontext().prec = 7
 </code></pre>
 
-<h2 id="resources">Resources</h2>
+<h2 id="recursos">Recursos</h2>
+
 <ul>
   <li><a href="http://docs.python.org/tutorial/floatingpoint.html">Floating Point Arithmetic: Issues and Limitations</a></li>
   <li><a href="http://docs.python.org/library/decimal.html">The decimal module</a>
