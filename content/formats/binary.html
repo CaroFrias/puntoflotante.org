@@ -1,15 +1,16 @@
 --- 
-title: Binary Fractions
-description: In-depth explanation of how binary fractions work, what problems the cause and why they are used anyway
+title: Fracciones binarias
+description: Explicación detallada de cómo funcionan las fracciones binarias, qué problemas causan y por qué aun así se utilizan
 ---
 
-How they work
--------------
-As a programmer, you should be familiar with the concept of binary integers, i.e.
-the representation of integer numbers as a series of bits:
+Cómo funcionan
+--------------
+
+Como programador, deberías estar familiarizado con el conceptro de enteros binarios,
+esto es, la representación de números enteros como series de bits:
 
 <table>
-<tr><th colspan="9">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="17">Binary (<span class="num_base">base 2</span>)</th></tr>
+<tr><th colspan="9">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="17">Binario (<span class="num_base">base 2</span>)</th></tr>
 <tr class="base_example">
 <td class="digit">1</td><td>&sdot;</td><td class="num_base">10<sup>1</sup></td><td>+</td>
 <td class="digit">3</td><td>&sdot;</td><td class="num_base">10<sup>0</sup></td><td>=</td>
@@ -30,10 +31,11 @@ the representation of integer numbers as a series of bits:
 <td class="digit">1</td><td>&sdot;</td><td>1</td>
 </tr></table>
 
-This is how computers store integer numbers internally. And for fractional numbers in [positional notation](http://en.wikipedia.org/wiki/Positional_notation), they do the same thing:
+Así almacenan números internamente los ordenadores. Y para números racionales en [notación
+posicional](http://es.wikipedia.org/wiki/Notaci%C3%B3n_posicional), hacen lo mismo:
 
 <table>
-<tr><th colspan="13">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="13">Binary (<span class="num_base">base 2</span>)</th></tr>
+<tr><th colspan="13">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="13">Binario (<span class="num_base">base 2</span>)</th></tr>
 <tr class="base_example">
 <td class="digit">6</td><td>&sdot;</td><td class="num_base">10<sup>-1</sup></td><td>+</td>
 <td class="digit">2</td><td>&sdot;</td><td class="num_base">10<sup>-2</sup></td><td>+</td>
@@ -54,33 +56,41 @@ This is how computers store integer numbers internally. And for fractional numbe
 <td class="digit">1</td><td>&sdot;</td><td>1/8</td>
 </tr></table>
 
-Problems
---------
-While they work the same in principle, binary fractions are different from decimal fractions in what
-numbers they can accurately represent with a given number of digits, and thus also in what numbers result in [rounding errors](/errors/rounding/):
+Problemas
+---------
 
-Specifically, binary can only represent those numbers as a finite fraction where the denominator
-is a power of 2. Unfortunately, this does not include most of the numbers that can be 
-represented as finite fraction in base 10, like 0.1.
+Aunque funcionan igual en principio, las fracciones binarias son diferentes a las fracciones decimales
+en qué números que se pueden representar con precisión dado un número de dígitos, y por tanto también
+en qué números resultan en [errores de redondeo](/errors/rounding/): concretamente, en binario solo
+se pueden representar como una fracción finita aquellos números en los que el denominador es una
+potencia de 2. Por desgracia, esto no incluye la mayoría de los números que pueden ser representados
+como una fracción finita en base 10, como 0.1.
 
-| Fraction | Base | Positional Notation | Rounded to 4 digits| Rounded value as fraction | Rounding error |
+| Fracción | Base | Notación posicional | Redondeado a 4 dígitos | Valor redondeado como fracción | Error de redondeo |
 |-|-|-|-|
 | 1/10 | 10 | 0.1 | 0.1 | 1/10 | 0 |
 | 1/3  | 10 | 0.<span class="over">3</span> | 0.3333 | 3333/10000 | 1/30000 |
 | 1/2  | 2  | 0.1 | 0.1 | 1/2 | 0 |
 | 1/10 | 2  | 0.0<span class="over">0011</span> | 0.0001 | 1/16 | 3/80 |
 
-And this is how you already get a rounding error when you just *write down* a number like 0.1 and
-run it through your interpreter or compiler. It's not as big as 3/80 and may be invisible because
-computers cut off after 23 or 52 binary digits rather than 4. But the error is there and *will* cause
-problems eventually if you just ignore it.
+Y así es como *ya* obtienes un error de redondeo *con solamente escribir* un número como 0.1 y
+pasarlo por tu intérprete o compilador. No es tan grande como 3/80 y puede ser invisible porque
+los ordenadores cortan después de 23 o 52 dígitos binarios en vez de 4. Pero el error está ahí
+y *causará* problemas eventualmente si simplemente lo ignoras.
 
 
-Why use Binary?
----------------
-At the lowest level, computers are based on billions of electrical elements that have only two states, (usually low and high voltage). By interpreting these as 0 and 1, it's very easy to build circuits for storing binary numbers and doing calculations with them.
+¿Por qué usar binario?
+----------------------
 
-While it's possible to simulate the behaviour of decimal numbers with binary circuits as well, it's less efficient. If computers used decimal numbers internally, they'd have less memory and be slower at the same level of technology. 
+En el nivel más inferior, los ordenadores están basados en miles de millones de elementos eléctricos
+que tienen dos estados (normalmente baja y alta tensión). Interpretándolos como 0 y 1, es muy fácil
+construir circuitos para almacenar números binarios y hacer cálculos con ellos.
 
-Since the difference in behaviour between binary and decimal numbers is not important for most applications, the logical choice is to build computers based on binary numbers and live with the fact
-that some extra care and effort are necessary for applications that require [decimal-like behaviour](/formats/exact/).
+Mientras que es posible simular el comportamiento de los números decimales con circuitos binarios
+también, es menos eficiente. Si los ordenadores usaran números decimales internamente, tendrían
+menos memoria y serían más lentos con el mismo nivel de tecnología.
+
+Puesto que la diferencia de comportamiento entre números binarios y decimales no es importante para
+la mayor parte de las aplicaciones, la elección lógica es construir ordenadores basados en el sistema
+binario y vivir con el hecho de que hay que poner un poco más de atención y esfuerzo para las aplicaciones
+que tienen que funcionar [como un número decimal](/formats/exact/).

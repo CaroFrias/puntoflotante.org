@@ -1,36 +1,59 @@
 --- 
-title: Exact Types
-description: Description of various datatypes that can be more exact that floating-point numbers
+title: Tipos exactos
+description: Descripción de varios tipos de datos que pueden ser más exactos que los números de punto flotante
 ---
 
-While [binary](/formats/binary/) [floating-point](/formats/fp/) numbers are better for computers to work with, and usually good enough for humans, sometimes they are just not appropriate. Sometimes, the numbers really must add up to the last bit, and no technical excuses are acceptable - usually when the calculations involve money. 
+Aunque los números de [punto flotante](/formats/fp/) [binarios](/formats/binary/)
+son mejores para que los ordenadores trabajen con ellos, y lo bastante buenos para
+los humanos, a veces simplemente no son apropiados. En ocasiones los números de
+verdad tienen que sumarse bien hasta el último bit, y no hay excusas técnicas
+aceptables - normalmente cuando los cálculos involucran dinero.
 
-Unfortunately, there is no dominating standard like IEEE 754 for this (The 2008 version of the standard added decimal types, which is too recent to have seen widespread adoption).
-Each language or platform has its own solution, sometimes multiple different ones. For details, look at the language cheat sheets.
+Desgraciadamente, no hay un estándar dominante equivalente al IEEE 754 para esto
+(la versión del 2008 añadió tipos decimales, pero es demasiado reciente para
+tener una adopción generalizada).
 
-There are at least three fundamentally different kinds of such types:
+Cada lenguaje o plataforma tiene su propia solución, y a veces más de una. Para
+más detalles, puedes ver las cheat sheets de los lenguajes.
 
-Limited-Precision Decimal
--------------------------
-Basically the same as a IEEE 754 binary floating-point, except that the exponent is interpreted as base 10. As a result, there are no unexpected [rounding errors](/errors/rounding/). Also, this kind of format is relatively compact and fast, but usually slower than binary formats.
+Hay al menos tres clases diferentes de estos tipos de datos:
 
-Arbitrary-Precision Decimal
----------------------------
-Sometimes called "bignum", this is similar to a limited-precision type, but has the ability to increase the length of the significand (possibly also the exponent) as required. The downside is that there is some basic overhead (memory and speed) to support this flexibility, and that the longer the significand gets, the more
-memory is needed and the slower all calculations become.
+Decimal de precisión limitada
+-----------------------------
 
-It can be very tempting to say "My calculation is important, so I need as much precision as possible", but in practice the actual importance of precision at the 10,000th decimal digit quickly pales in comparison with the
-performance penalty required to support it.
+Básicamente lo mismo que el punto flotante binario del IEEE 754, excepto porque
+el exponente se interpreta en base 10. Como resultado, no hay [errores de
+redondeo](/errors/rounding/) inesperados. Además, este tipo de formato es
+relativamente compacto y rápido, pero normalmente más lento que los formatos binarios.
 
-Symbolic calculations
----------------------
-The "holy grail" of exact calculations. Achieved by writing a program that actually knows all the rules of math and represents data as *symbols* rather than imprecise, rounded numbers. For example:
+Decimal de precisión arbitraria
+-------------------------------
 
-* 1/3 is actually a fraction "one divided by three"
-* The square root of 2 is really the number that, multiplied by itself, is *exactly* 2
-* Even [transcendental numbers](http://en.wikipedia.org/wiki/Transcendental_numbers) like **e** and **&pi;** are known, together with their properties, so that e<sup>i&pi;</sup> is *exactly* equal to -1.
+A veces llamado «bignum», es similar a un tipo de precisión limitada, pero tiene
+la habilidad de incrementar la longitud de la mantisa (a veces también la del exponente)
+cuando es necesario. La contrapartida es que hay un coste (en memoria y velocidad)
+por soportar esta flexibilidad, y además cuanto más larga es la mantisa más memoria
+se necesita y más lentos se vuelven los cálculos.
 
-However, these symbolic math systems are complex, slow and require significant mathematical knowledge to use. 
-They are invaluable tools for mathematicians, but not appropriate for most everyday programming tasks. And 
-even many mathematicians work on problems where imprecise, numerical solutions are better because no 
-symbolic solution is known. 
+Puede ser muy tentador decir «mi operación es importante, así que necesito toda la
+precisión que sea posible», pero en la práctica la importancia real de la precisión
+en la diezmilésima cifra decimal se desvanece en comparación con la penalización en
+la eficiencia requerida para soportarlo.
+
+Cálculo simbólico
+-----------------
+
+El «santo grial» de las operaciones exactas. Se consigue escribiendo un programa que
+realmente conozca todas las reglas matemáticas y represente los datos como *símbolos*
+en lugar de números redondeados e imprecisos. Por ejemplo:
+
+* 1/3 es realmente la fracción «uno dividido entre tres».
+* La raíz cuadrada de 2 es realmente el número que, multiplicado por sí mismo, da *exactamente* 2.
+* Incluso los [números trascendentes](http://es.wikipedia.org/wiki/N%C3%BAmero_trascendente) como **e** y **&pi;** son conocidos, junto con sus propiedades, de tal forma que e<sup>i&pi;</sup> es *exactamente* igual a -1.
+
+Sin embargo, estos sistemas de cálculo simbólico son complejos, lentos y requieren
+unos conocimientos matemáticos significativos para ser usados. Son herramientas
+inestimables para los matemáticos, pero no son apropiadas para las tareas diarias en
+programación. E incluso la mayoría de los matemáticas trabajan en problemas donde
+soluciones numéricas imprecisas son mejores porque no se conoce solución en forma
+cerrada.

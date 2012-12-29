@@ -1,14 +1,20 @@
 --- 
-title: On Using Integers
-description: Explanation why using integers to avoid floating-point problems by having them represent e.g. cents is not a good solution.
+title: Sobre usar enteros
+description: Explicación de por qué usar enteros para evitar los problemas del punto flotante para, por ejemplo, representar céntimos no es una buena solución
 ---
 
-While integer types are usually binary and by definition do not support fractions, they are exact (no [rounding errors](/errors/rounding/) when converting from decimal integers) and can be used as a sort of "poor man's [decimal type](/formats/exact/)" by choosing an implicit fixed decimal point so that the smallest unit you work with can be represented as the integer 1. In practical terms, this is often put as: **"To handle money, store and calculate everything in cents and format only the output"**.
+Mientras que los tipos enteros son normalmente binarios y por definición no soportan
+fracciones, son exactos (no hay [errores de redondeo](/errors/rounding/) cuando se
+convierten desde enteros decimales) y se pueden usar como una suerte de [tipo
+decimal](/formats/exact/) «casero» eligiendo implícitamente un punto decimal fijo
+de tal forma que la unidad más pequeña con la que estés trabajando se pueda representar
+por el entero 1. En la práctica, esto normalmente se expresa como: **«Para manejar
+dinero, almacena y calcula todo en céntimos y solo formatea el resultado»**.
 
-This works, but has a number of **severe drawbacks**:
+Esto funciona, pero tiene algunas **desventajas importantes**:
 
-* It's more work (and more opportunity for bugs) to get it right, especially in regard to [rounding modes](/errors/rounding/).
-* Integers have complete precision, but very limited range, and when they overflow, they usually "wrap around" silently, i.e. the largest integer plus 1 becomes zero (for unsigned ints) or the negative value with the largest magnitude (for signed). This is just about the worst possible behaviour when dealing with money, for obvious reasons.
-* The implicit decimal point is hard to change and extremely inflexible: if you store dollars as cents, it's simply impossible to support the [Bahraini dinar](http://en.wikipedia.org/wiki/Bahraini_dinar)(1 dinar = 1,000 Fils) at the same time. You'd have to store the position of the decimal point with the data - the first step in implementing your own (buggy, non-standard) limited-precision decimal [floating-point](/formats/fp/) format.
+* Supone más trabajo (y más oportunidades de introducir bugs) hacerlo bien, especialmente en lo que concierne a los [métodos de redondeo](/errors/rounding/).
+* Los enteros tienen precisión completa, pero en un rango muy limitado, y cuando se desbordan, normalmente «dan la vuelta» silenciosamente: el mayor entero más 1 da cero (para enteros sin signo) o el valor negativo más grande en valor absoluto (para enteros con signo). Este es el peor comportamiento posible cuando se trabaja con dinero por razones obvias.
+* El punto decimal implícito es defícil de cambiar y enormemente inflexible: si almacenas los dólares como céntimos, es simplemente imposible soportar el [dinar bareiní](http://es.wikipedia.org/wiki/Dinar_barein%C3%AD)(1 dinar = 1000 fils) al mismo tiempo. Tendrías que almacenar la posición del punto decimal con los datos - el primer paso para implementar tu propio formato de [punto flotante](/formats/fp/) decimal de precisión limitada (lleno de fallos y no estándar).
 
-Summary: **using integers is not recommended.** Do this only if there really is no [better alternative](/formats/exact/) at all.
+Resumen: **no se recomienda usar enteros**. Haz esto solamente si no hay otra [alternativa mejor](/formats/exact/).
