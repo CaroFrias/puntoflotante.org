@@ -1,35 +1,40 @@
 --- 
-title: Floating-point cheat sheet for PHP
-description: Tips for using floating-point and decimal numbers in PHP
+title: Cheat sheet de punto flotante para PHP
+description: Trucos para usar punto flotante y números decimales en PHP
 --- 
 
-Floating-Point Types
---------
-PHP is dynamically typed and will often convert implicitly between strings and floating-point numbers (which are platform-dependant, but typically IEEE 64 bit values). To force a value to floating-point, evaluate it in a numerical context:
+Tipos de punto flotante
+-----------------------
+
+PHP tiene tipado dinámico y a veces convertirá implícitamente entre cadenas y
+números de punto flotante (que son dependientes de la plataforma, pero normalmente
+valores IEEE de 64 bits). Para forzar un valor a punto flotante, evalúalo en un
+contexto numérico: 
 
 		$foo = 0 + "10.5"; 
 
+Tipos decimales
+---------------
 
-Decimal Types
--------------
-The BC Math extension implements [arbitrary-precision](/formats/exact/) decimal math:
+La extensión BCMath (Binary Calculator) implementa aritmética de [precisión
+arbitraria](/formats/exact/) decimal:
 
 		$a = '0.1';
 		$b = '0.2';
-		echo bcadd($a, $b);     // prints 0.3
+		echo bcadd($a, $b);     // Imprime 0.3
 
-How to Round
-------------
-Rounding can be done with the `number_format()` function:
+Cómo redondear
+--------------
+
+Redondear se puede hacer con la función `number_format()`:
 
 		$number = 4.123;
-		echo number_format($number, 2); // prints 4.12
+		echo number_format($number, 2); // Imprime 4.12
 
+Recursos 
+--------
 
-Resources 
----------
 * [PHP manual](http://www.php.net/manual/en/index.php)
    * [Floating point types](http://www.php.net/manual/en/language.types.float.php)
    * [BC Math extension](http://de3.php.net/manual/en/ref.bc.php)
    * [number_format()](http://de3.php.net/manual/en/function.number-format.php)
-

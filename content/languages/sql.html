@@ -1,37 +1,44 @@
 --- 
-title: Floating-point cheat sheet for SQL
-description: Tips for using floating-point and decimal numbers in SQL
+title: Cheat sheet de punto flotante para SQL
+description: Trucos para usar punto flotante y números decimales en SQL
 --- 
 
-Floating-Point Types
+Tipos de punto flotante
+-----------------------
+
+El estándar SQL define tres tipos de punto flotante binarios:
+
+* `REAL` tiene precisión dependiente de la implementación (normalmente se asocia a un tipo a nivel de hardware como precisión sencilla o doble del IEEE 754).
+* `DOUBLE PRECISION` tiene precisión dependiente de la implementación que es mayor que la de `REAL` (normalmente se asocia al precisión doble del IEEE 754).
+* `FLOAT(N)` tiene al menos `N` dígitos binarios de precisión, con un máximo para `N` que depende de la implementación.
+
+El rango del exponente para los tres tipos también depende de la implementación.
+
+Tipos decimales
+---------------
+
+El estándar define dos tipos decimales de punto fijo:
+
+* `NUMERIC(M,N)` tiene exactamente `M` dígitos en total, `N` de los cuales después del punto decimal.
+* `DECIMAL(M,N)` es lo mismo que `NUMERIC(M,N)`, excepto porque permite tener más de `M` dígitos totales.
+
+Los valores máximos de `M` y `N` dependen de la implementación. Los proveedores
+normalmente implementan los dos tipos de manera idéntica.
+
+Cómo redondear
+--------------
+
+El estándar SQL no define explícitamente el redondeo, pero la mayoría de los
+proveedores proporciona una función `ROUND()` o `TRUNC()`.
+
+Sin embargo, normalmente no tiene mucho sentido redondear dentro de la base de
+datos, puesto que su función es *almacenar* los datos, mientras que redondear
+es un aspecto de la *representación* de los datos, y debe por tanto hacerse
+en el código de la capa de presentación.
+
+Recursos
 --------
-The SQL standard defines three binary floating-point types:
 
-* `REAL` has implementation-dependant precision (usually maps to a hardware-supported type like IEEE 754 single or double precision)
-* `DOUBLE PRECISION` has implementation-dependant precision which is greater than `REAL` (usually maps to IEEE 754 double precision)
-* `FLOAT(N)` has at least `N` binary digits of precision, with an implementation-dependant maximum for `N`
-
-The exponent range for all three types is implementation-dependant as well.
-
-Decimal Types
--------------
-The standard defines two fixed-point decimal types:
-
-* `NUMERIC(M,N)` has exactly `M` total digits, `N` of them after the decimal point
-* `DECIMAL(M,N)` is the same as `NUMERIC(M,N)`, except that it is allowed to have more than `M` total digits
-
-The maximum values of `M` and `M` are implementation-dependant. Vendors often implement the two types identically.
-
-How to Round
-------------
-
-The SQL standard defines no explicit rounding, but most vendors provide a `ROUND()` or `TRUNC()` function.
-
-However, it usually makes little sense to round within the database, since its job is *storing* data, while rounding is an aspect of *displaying* data, and should therefore be done by the code in the presentation layer.
-
-
-Resources 
----------
 * [Official ISO SQL 2008 standard (non-free)](http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=38640)  
 * [SQL 92 draft (free)](http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt)
 * [MySQL numeric types](http://dev.mysql.com/doc/refman/5.0/en/numeric-types.html)

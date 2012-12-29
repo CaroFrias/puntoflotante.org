@@ -1,42 +1,44 @@
 --- 
-title: Floating-point cheat sheet for JavaScript
-description: Tips for using floating-point and decimal numbers in JavaScript
+title: Cheat sheet de punto flotante para JavaScript
+description: Trucos para usar punto flotante y números decimales en JavaScript
 --- 
 
-Floating-Point Types
---------
-JavaScript is dynamically typed and will often convert implicitly between strings and floating-point numbers (which are IEEE 64 bit values). To force a variable to floating-point, use the global <code>parseFloat()</code> function.
+Tipos de punto flotante
+-----------------------
+
+JavaScript tiene tipado dinámico y a veces convertirá implícitamente entre cadenas
+y números de punto flotante (que son valores IEEE de 64 bits). Para forzar una variable
+a punto flotante, utiliza la función `parseFloat()`.
 
 		var num = parseFloat("3.5");
 
-Decimal Types
--------------
+Tipos decimales
+---------------
 
-The best decimal type for JavaScript seems to be a port of [Java's](/languages/java/) <code>BigDecimal</code> class, which also supports [rounding modes](/errors/rounding/):
+El mejor tipo decimal para JavaScript parece ser una migración de la clase de
+[Java](/languages/java/) `BigDecimal`, que también soporta [métodos de redondeo](/errors/rounding/):
 
 		var a = new BigDecimal("0.01");
 		var b = new BigDecimal("0.02");
 		var c = a.add(b); // 0.03
 		var d = c.setScale(1, BigDecimal.prototype.ROUND_HALF_UP);
 
-
-How to Round
-------------
+Cómo redondear
+--------------
 
 		var num = 5.123456;
-		num.toPrecision(1) //returns 5 as string
-		num.toPrecision(2) //returns 5.1 as string
-		num.toPrecision(4) //returns 5.123 as string
-		
-Using a specific rounding mode:
+		num.toPrecision(1) //Devuelve 5 como una cadena
+		num.toPrecision(2) //Devuelve 5.1 como una cadena
+		num.toPrecision(4) //Devuelve 5.123 como una cadena
+
+Utilizando un método de redondeo específico:
 
 		new BigDecimal("1.25").setScale(1, BigDecimal.prototype.ROUND_HALF_UP);
 
+Recursos 
+--------
 
-Resources 
----------
 * [BigDecimal for JavaScript](https://github.com/dtrebbien/BigDecimal.js)
 * [Core JavaScript Reference](https://developer.mozilla.org/en/JavaScript/Reference)  
   * [parseFloat()](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/parseFloat)
   * [toPrecision()](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number/toPrecision)
-

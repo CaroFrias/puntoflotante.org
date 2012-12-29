@@ -1,60 +1,72 @@
 --- 
-title: Floating-point cheat sheet for Perl
-description: Tips for using floating-point and decimal numbers in Perl
+title: Cheat sheet de punto flotante para Perl
+description: Trucos para usar punto flotante y números decimales en Perl
 --- 
 
-Floating-Point Types
---------
-Perl supports platform-native floating-point as scalar values; in practice this usually means [IEEE 754](/formats/fp/) double precision.
+Tipos de punto flotante
+-----------------------
 
-Exact Types
+Perl soporta números de punto flotante nativos de la plataforma como valores
+escalares; en la práctica esto significa precisión doble del [IEEE 754](/formats/fp/).
+
+Tipos exactos
 -------------
-Perl can also store decimal numbers as strings, but the builtin arithmetic operators will convert them to integer or floating-point values to perform the operation.
 
-The <code>Math::BigFloat</code> extension provides an arbitrary-precision [decimal type](/formats/exact/):
+Perl también puede almacenar números decimales como cadenas, pero los operadores
+aritméticos integrados los convertirán a enteros o a valores de punto flotante
+para realizar la operación.
+
+La extensión `Math::BigFloat` proporciona un [tipo decimal](/formats/exact/) de
+precisión arbitraria:
 
 		use Math::BigFloat ':constant'
-		my $f = 0.1 + 0.2; # returns exactly 0.3
-		
-The <code>Number::Fraction</code> extension provides a fraction type that overloads the arithmetic operators with [symbolic](/formats/exact/) fraction arithmetic:
+		my $f = 0.1 + 0.2; # Devuelve exactamente 0.3
+
+La extensión `Number::Fraction` proporciona un tipo de datos fraccionario que 
+sobrecarga los operadores con aritmética [simbólica](/formats/exact/) para fracciones:
 
 		use Number::Fraction ':constants';
-		my $f = '1/2' - '1/3'; # returns 1/6
-		
-The <code>Math::BigRat</code> extension provides similar functionality. Its advantage is compatibility with the
-<code>Math::BigInt</code> and <code>Math::BigFloat</code> extensions, but it does not seem to support fraction literals.
+		my $f = '1/2' - '1/3'; # Devuelve 1/6
 
-How to Round
-------------
-To get a string:
+La extensión `Math::BigRat` proporciona funcionalidad similar. Su ventaja es
+compatibilidad con las extensiones `Math::BigInt` y `Math::BigFloat`, pero
+no parece soportar literales fraccionarios.
 
-		$result = sprintf("%.2f", 1.2345); # returns 1.23 
-		
-To format output:
+Cómo redondear
+--------------
 
-		printf("%.2f", 1.2); # prints 1.20
-		
-Note that this implicitly uses [round-to-even](/errors/rounding/). The variable <code>$#</code> contains the default format for printing numbers, but its use is considered deprecated.
+Para obtener una cadena:
 
-The <code>Math::Round</code> extension provides various functions for rounding floating-point values:
+		$result = sprintf("%.2f", 1.2345); # Devuelve 1.23 
+
+Para formatear la salida:
+
+		printf("%.2f", 1.2); # Imprime 1.20
+
+Ten en cuenta que esto utiliza implícitamente [mitad al par](/errors/rounding/).
+La variable `$#` contiene el formato por defecto para imprimir números, pero
+su uso se considera obsoleto.
+
+La extensión `Math::Round` proporciona varias funciones para redondear valores
+de punto flotante:
 
 		use Math::Round qw(:all);
-		$result = nearest(.1, 4.567) # prints 4.6
-		$result = nearest(.01, 4.567) # prints 4.57
-		
-The <code>Math::BigFloat</code> extension also supports various [rounding modes](/errors/rounding/):
+		$result = nearest(.1, 4.567) # Imprime 4.6
+		$result = nearest(.01, 4.567) # Imprime 4.57
+
+La extensión `Math::BigFloat` también soporta varios [métodos de redondeo](/errors/rounding/):
 
 		use Math::BigFloat;
 		my $n = Math::BigFloat->new(123.455);
-		my $f1 = $n->round('','-2','common'); # returns 123.46
-		my $f2 = $n->round('','-2','zero'); # returns 123.45
+		my $f1 = $n->round('','-2','common'); # Devuelve 123.46
+		my $f2 = $n->round('','-2','zero'); # Devuelve 123.45
 
-Resources 
----------
+Recursos
+--------
+
 * [Semantics of numbers and numeric operations in Perl](http://perldoc.perl.org/perlnumber.html)
 * [sprintf function](http://perldoc.perl.org/functions/sprintf.html)
 * [Math::Round extension](http://search.cpan.org/dist/Math-Round/Round.pm)
 * [Number::Fraction extension](http://search.cpan.org/~davecross/Number-Fraction-1.13/lib/Number/Fraction.pm)
 * [Math::BigRat extension](http://search.cpan.org/~flora/Math-BigRat-0.26/lib/Math/BigRat.pm)
 * [Math::BigFloat extension](http://search.cpan.org/~flora/Math-BigInt-1.95/lib/Math/BigFloat.pm)
-

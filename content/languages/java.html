@@ -1,51 +1,59 @@
 --- 
-title: Floating-point cheat sheet for Java
-description: Tips for using floating-point and decimal numbers in Java
+title: Cheat sheet de punto flotante para Java
+description: Trucos para usar punto flotante y números decimales en Java
 --- 
 
-Floating-Point Types
---------
-Java has [IEEE 754](/formats/fp/) single and double precision types supported by keywords:
+Tipos de punto flotante
+-----------------------
 
-		float f = 0.1f; // 32 bit float, note f suffix
-		double d = 0.1d; // 64 bit float, suffix optional
-		
-The `strictfp` keyword on classes, interfaces and methods forces all intermediate results of floating-point calculations to be IEEE 754 values as well, guaranteeing identical results on all platforms. Without that keyword, implementations can use an extended exponent range where available, resulting in more precise results and faster execution on many common CPUs.
-		
-Decimal Types
--------------
-Java has an [arbitrary-precision](/formats/exact/) decimal type named <code>java.math.BigDecimal</code>, which
-also allows to choose the [rounding mode](/errors/rounding/).
+Java tiene tipos de precisión sencilla y doble del [IEEE 754](/formats/fp/) soportados
+por palabras clave:
+
+		float f = 0.1f; // punto flotante de 32 bits, nótese el sufijo f
+		double d = 0.1d; // punto flotante de 64 bits, sufijo opcional
+
+La palabra clave `strictfp` en las clases, interfaces y métodos fuerza también
+a que todos los resultados intermedios de cálculos en punto flotante sean
+valores IEEE 754, garantizando resultados idénticos en todas las plataformas.
+Sin esa palabra clave, las implementaciones pueden usar un rango extendido para
+el exponente, llevando a resultados más precisos y ejecuciones más rápidas
+en bastantes CPUs.
+
+Tipos decimales
+---------------
+
+Java tiene un tipo decimal de [precisión arbitraria](/formats/exact/) llamado
+`java.math.BigDecimal`, que también permite elegir el [método de redondeo](/errors/rounding/).
 
 		BigDecimal a = new BigDecimal("0.1");
 		BigDecimal b = new BigDecimal("0.2");
-		BigDecimal c = a.add(b); // returns a BigDecimal representing exactly 0.3
+		BigDecimal c = a.add(b); // Devuelve un BigDecimal que representa exactamente 0.3
 
+Cómo redondear
+--------------
 
-How to Round
-------------
-To get a String:
+Para obtener una cadena:
 
-		String.format("%.2f", 1.2399) // returns "1.24"
-		String.format("%.3f", 1.2399) // returns "1.240"
-		String.format("%.2f", 1.2) // returns "1.20"
-		
-To print to standard output (or any <code>PrintStream</code>):
+		String.format("%.2f", 1.2399) // Devuelve "1.24"
+		String.format("%.3f", 1.2399) // Devuelve "1.240"
+		String.format("%.2f", 1.2) // Devuelve "1.20"
 
-		System.out.printf("%.2f", 1.2399) // same syntax as String.format()
-		
-If you don't want trailing zeroes:
+Para imprimir por la salida estándar (o cualquier `PrintStream`):
 
-		new DecimalFormat("0.00").format(1.2)// returns "1.20"
-		new DecimalFormat("0.##").format(1.2)// returns "1.2"
-		
-If you need a specific [rounding mode](/errors/rounding/):
+		System.out.printf("%.2f", 1.2399) // Misma sintaxis que String.format()
 
-		new BigDecimal("1.25").setScale(1, RoundingMode.HALF_EVEN); // returns 1.2
+Si no quieres ceros a la derecha:
 
+		new DecimalFormat("0.00").format(1.2)// Devuelve "1.20"
+		new DecimalFormat("0.##").format(1.2)// Devuelve "1.2"
 
-Resources 
----------
+Si necesitas un [método de redondeo](/errors/rounding/) específico:
+
+		new BigDecimal("1.25").setScale(1, RoundingMode.HALF_EVEN); // Devuelve 1.2
+
+Recursos 
+--------
+
 * [Java Language Specification](http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html)  
    * [Floating-Point Types, Formats, and Values](http://java.sun.com/docs/books/jls/third_edition/html/typesValues.html#4.2.3)
 * [Java Standard API](http://java.sun.com/javase/6/docs/api/)
