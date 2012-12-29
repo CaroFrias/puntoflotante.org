@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Exact Types</title>
+    <title>La Guía del Punto Flotante - Tipos exactos</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Description of various datatypes that can be more exact that floating-point numbers">
+		<meta name="Description" content="Descripción de varios tipos de datos que pueden ser más exactos que los números de punto flotante">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,37 +14,60 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Exact Types</h1>
-      <p>While <a href="/formats/binary/">binary</a> <a href="/formats/fp/">floating-point</a> numbers are better for computers to work with, and usually good enough for humans, sometimes they are just not appropriate. Sometimes, the numbers really must add up to the last bit, and no technical excuses are acceptable - usually when the calculations involve money. </p>
+		<h1>Tipos exactos</h1>
+      <p>Aunque los números de <a href="/formats/fp/">punto flotante</a> <a href="/formats/binary/">binarios</a>
+son mejores para que los ordenadores trabajen con ellos, y lo bastante buenos para
+los humanos, a veces simplemente no son apropiados. En ocasiones los números de
+verdad tienen que sumarse bien hasta el último bit, y no hay excusas técnicas
+aceptables - normalmente cuando los cálculos involucran dinero.</p>
 
-<p>Unfortunately, there is no dominating standard like IEEE 754 for this (The 2008 version of the standard added decimal types, which is too recent to have seen widespread adoption).
-Each language or platform has its own solution, sometimes multiple different ones. For details, look at the language cheat sheets.</p>
+<p>Desgraciadamente, no hay un estándar dominante equivalente al IEEE 754 para esto
+(la versión del 2008 añadió tipos decimales, pero es demasiado reciente para
+tener una adopción generalizada).</p>
 
-<p>There are at least three fundamentally different kinds of such types:</p>
+<p>Cada lenguaje o plataforma tiene su propia solución, y a veces más de una. Para
+más detalles, puedes ver las cheat sheets de los lenguajes.</p>
 
-<h2 id="limited-precision-decimal">Limited-Precision Decimal</h2>
-<p>Basically the same as a IEEE 754 binary floating-point, except that the exponent is interpreted as base 10. As a result, there are no unexpected <a href="/errors/rounding/">rounding errors</a>. Also, this kind of format is relatively compact and fast, but usually slower than binary formats.</p>
+<p>Hay al menos tres clases diferentes de estos tipos de datos:</p>
 
-<h2 id="arbitrary-precision-decimal">Arbitrary-Precision Decimal</h2>
-<p>Sometimes called “bignum”, this is similar to a limited-precision type, but has the ability to increase the length of the significand (possibly also the exponent) as required. The downside is that there is some basic overhead (memory and speed) to support this flexibility, and that the longer the significand gets, the more
-memory is needed and the slower all calculations become.</p>
+<h2 id="decimal-de-precisin-limitada">Decimal de precisión limitada</h2>
 
-<p>It can be very tempting to say “My calculation is important, so I need as much precision as possible”, but in practice the actual importance of precision at the 10,000th decimal digit quickly pales in comparison with the
-performance penalty required to support it.</p>
+<p>Básicamente lo mismo que el punto flotante binario del IEEE 754, excepto porque
+el exponente se interpreta en base 10. Como resultado, no hay <a href="/errors/rounding/">errores de
+redondeo</a> inesperados. Además, este tipo de formato es
+relativamente compacto y rápido, pero normalmente más lento que los formatos binarios.</p>
 
-<h2 id="symbolic-calculations">Symbolic calculations</h2>
-<p>The “holy grail” of exact calculations. Achieved by writing a program that actually knows all the rules of math and represents data as <em>symbols</em> rather than imprecise, rounded numbers. For example:</p>
+<h2 id="decimal-de-precisin-arbitraria">Decimal de precisión arbitraria</h2>
+
+<p>A veces llamado «bignum», es similar a un tipo de precisión limitada, pero tiene
+la habilidad de incrementar la longitud de la mantisa (a veces también la del exponente)
+cuando es necesario. La contrapartida es que hay un coste (en memoria y velocidad)
+por soportar esta flexibilidad, y además cuanto más larga es la mantisa más memoria
+se necesita y más lentos se vuelven los cálculos.</p>
+
+<p>Puede ser muy tentador decir «mi operación es importante, así que necesito toda la
+precisión que sea posible», pero en la práctica la importancia real de la precisión
+en la diezmilésima cifra decimal se desvanece en comparación con la penalización en
+la eficiencia requerida para soportarlo.</p>
+
+<h2 id="clculo-simblico">Cálculo simbólico</h2>
+
+<p>El «santo grial» de las operaciones exactas. Se consigue escribiendo un programa que
+realmente conozca todas las reglas matemáticas y represente los datos como <em>símbolos</em>
+en lugar de números redondeados e imprecisos. Por ejemplo:</p>
 
 <ul>
-  <li>1/3 is actually a fraction “one divided by three”</li>
-  <li>The square root of 2 is really the number that, multiplied by itself, is <em>exactly</em> 2</li>
-  <li>Even <a href="http://en.wikipedia.org/wiki/Transcendental_numbers">transcendental numbers</a> like <strong>e</strong> and <strong>π</strong> are known, together with their properties, so that e<sup>iπ</sup> is <em>exactly</em> equal to -1.</li>
+  <li>1/3 es realmente la fracción «uno dividido entre tres».</li>
+  <li>La raíz cuadrada de 2 es realmente el número que, multiplicado por sí mismo, da <em>exactamente</em> 2.</li>
+  <li>Incluso los <a href="http://es.wikipedia.org/wiki/N%C3%BAmero_trascendente">números trascendentes</a> como <strong>e</strong> y <strong>π</strong> son conocidos, junto con sus propiedades, de tal forma que e<sup>iπ</sup> es <em>exactamente</em> igual a -1.</li>
 </ul>
 
-<p>However, these symbolic math systems are complex, slow and require significant mathematical knowledge to use. 
-They are invaluable tools for mathematicians, but not appropriate for most everyday programming tasks. And 
-even many mathematicians work on problems where imprecise, numerical solutions are better because no 
-symbolic solution is known.</p>
+<p>Sin embargo, estos sistemas de cálculo simbólico son complejos, lentos y requieren
+unos conocimientos matemáticos significativos para ser usados. Son herramientas
+inestimables para los matemáticos, pero no son apropiadas para las tareas diarias en
+programación. E incluso la mayoría de los matemáticas trabajan en problemas donde
+soluciones numéricas imprecisas son mejores porque no se conoce solución en forma
+cerrada.</p>
 
 			<g:plusone href="http://puntoflotante.org/"></g:plusone>
 			<div id="license">
@@ -55,7 +78,7 @@ symbolic solution is known.</p>
 		</div>
     </div>
     <div id="sidebar">
-		<img src="/logo.png">
+		<a href="/"><img src="/logo.png"></a>
 		<h2>La Guía del Punto Flotante</h2>
 		<ul>
 		<li><a href="/">Inicio</a></li>

@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - On Using Integers</title>
+    <title>La Guía del Punto Flotante - Sobre usar enteros</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Explanation why using integers to avoid floating-point problems by having them represent e.g. cents is not a good solution.">
+		<meta name="Description" content="Explicación de por qué usar enteros para evitar los problemas del punto flotante para, por ejemplo, representar céntimos no es una buena solución">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,18 +14,24 @@
   </head>
   <body>  
     <div id="main">
-		<h1>On Using Integers</h1>
-      <p>While integer types are usually binary and by definition do not support fractions, they are exact (no <a href="/errors/rounding/">rounding errors</a> when converting from decimal integers) and can be used as a sort of “poor man’s <a href="/formats/exact/">decimal type</a>” by choosing an implicit fixed decimal point so that the smallest unit you work with can be represented as the integer 1. In practical terms, this is often put as: <strong>“To handle money, store and calculate everything in cents and format only the output”</strong>.</p>
+		<h1>Sobre usar enteros</h1>
+      <p>Mientras que los tipos enteros son normalmente binarios y por definición no soportan
+fracciones, son exactos (no hay <a href="/errors/rounding/">errores de redondeo</a> cuando se
+convierten desde enteros decimales) y se pueden usar como una suerte de <a href="/formats/exact/">tipo
+decimal</a> «casero» eligiendo implícitamente un punto decimal fijo
+de tal forma que la unidad más pequeña con la que estés trabajando se pueda representar
+por el entero 1. En la práctica, esto normalmente se expresa como: <strong>«Para manejar
+dinero, almacena y calcula todo en céntimos y solo formatea el resultado»</strong>.</p>
 
-<p>This works, but has a number of <strong>severe drawbacks</strong>:</p>
+<p>Esto funciona, pero tiene algunas <strong>desventajas importantes</strong>:</p>
 
 <ul>
-  <li>It’s more work (and more opportunity for bugs) to get it right, especially in regard to <a href="/errors/rounding/">rounding modes</a>.</li>
-  <li>Integers have complete precision, but very limited range, and when they overflow, they usually “wrap around” silently, i.e. the largest integer plus 1 becomes zero (for unsigned ints) or the negative value with the largest magnitude (for signed). This is just about the worst possible behaviour when dealing with money, for obvious reasons.</li>
-  <li>The implicit decimal point is hard to change and extremely inflexible: if you store dollars as cents, it’s simply impossible to support the <a href="http://en.wikipedia.org/wiki/Bahraini_dinar">Bahraini dinar</a>(1 dinar = 1,000 Fils) at the same time. You’d have to store the position of the decimal point with the data - the first step in implementing your own (buggy, non-standard) limited-precision decimal <a href="/formats/fp/">floating-point</a> format.</li>
+  <li>Supone más trabajo (y más oportunidades de introducir bugs) hacerlo bien, especialmente en lo que concierne a los <a href="/errors/rounding/">métodos de redondeo</a>.</li>
+  <li>Los enteros tienen precisión completa, pero en un rango muy limitado, y cuando se desbordan, normalmente «dan la vuelta» silenciosamente: el mayor entero más 1 da cero (para enteros sin signo) o el valor negativo más grande en valor absoluto (para enteros con signo). Este es el peor comportamiento posible cuando se trabaja con dinero por razones obvias.</li>
+  <li>El punto decimal implícito es defícil de cambiar y enormemente inflexible: si almacenas los dólares como céntimos, es simplemente imposible soportar el <a href="http://es.wikipedia.org/wiki/Dinar_barein%C3%AD">dinar bareiní</a>(1 dinar = 1000 fils) al mismo tiempo. Tendrías que almacenar la posición del punto decimal con los datos - el primer paso para implementar tu propio formato de <a href="/formats/fp/">punto flotante</a> decimal de precisión limitada (lleno de fallos y no estándar).</li>
 </ul>
 
-<p>Summary: <strong>using integers is not recommended.</strong> Do this only if there really is no <a href="/formats/exact/">better alternative</a> at all.</p>
+<p>Resumen: <strong>no se recomienda usar enteros</strong>. Haz esto solamente si no hay otra <a href="/formats/exact/">alternativa mejor</a>.</p>
 
 			<g:plusone href="http://puntoflotante.org/"></g:plusone>
 			<div id="license">
@@ -36,7 +42,7 @@
 		</div>
     </div>
     <div id="sidebar">
-		<img src="/logo.png">
+		<a href="/"><img src="/logo.png"></a>
 		<h2>La Guía del Punto Flotante</h2>
 		<ul>
 		<li><a href="/">Inicio</a></li>

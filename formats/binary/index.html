@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Binary Fractions</title>
+    <title>La Guía del Punto Flotante - Fracciones binarias</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="In-depth explanation of how binary fractions work, what problems the cause and why they are used anyway">
+		<meta name="Description" content="Explicación detallada de cómo funcionan las fracciones binarias, qué problemas causan y por qué aun así se utilizan">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,13 +14,14 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Binary Fractions</h1>
-      <h2 id="how-they-work">How they work</h2>
-<p>As a programmer, you should be familiar with the concept of binary integers, i.e.
-the representation of integer numbers as a series of bits:</p>
+		<h1>Fracciones binarias</h1>
+      <h2 id="cmo-funcionan">Cómo funcionan</h2>
+
+<p>Como programador, deberías estar familiarizado con el conceptro de enteros binarios,
+esto es, la representación de números enteros como series de bits:</p>
 
 <table>
-<tr><th colspan="9">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="17">Binary (<span class="num_base">base 2</span>)</th></tr>
+<tr><th colspan="9">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="17">Binario (<span class="num_base">base 2</span>)</th></tr>
 <tr class="base_example">
 <td class="digit">1</td><td>&sdot;</td><td class="num_base">10<sup>1</sup></td><td>+</td>
 <td class="digit">3</td><td>&sdot;</td><td class="num_base">10<sup>0</sup></td><td>=</td>
@@ -41,10 +42,11 @@ the representation of integer numbers as a series of bits:</p>
 <td class="digit">1</td><td>&sdot;</td><td>1</td>
 </tr></table>
 
-<p>This is how computers store integer numbers internally. And for fractional numbers in <a href="http://en.wikipedia.org/wiki/Positional_notation">positional notation</a>, they do the same thing:</p>
+<p>Así almacenan números internamente los ordenadores. Y para números racionales en <a href="http://es.wikipedia.org/wiki/Notaci%C3%B3n_posicional">notación
+posicional</a>, hacen lo mismo:</p>
 
 <table>
-<tr><th colspan="13">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="13">Binary (<span class="num_base">base 2</span>)</th></tr>
+<tr><th colspan="13">Decimal (<span class="num_base">base 10</span>)</th><th> </th><th colspan="13">Binario (<span class="num_base">base 2</span>)</th></tr>
 <tr class="base_example">
 <td class="digit">6</td><td>&sdot;</td><td class="num_base">10<sup>-1</sup></td><td>+</td>
 <td class="digit">2</td><td>&sdot;</td><td class="num_base">10<sup>-2</sup></td><td>+</td>
@@ -65,23 +67,24 @@ the representation of integer numbers as a series of bits:</p>
 <td class="digit">1</td><td>&sdot;</td><td>1/8</td>
 </tr></table>
 
-<h2 id="problems">Problems</h2>
-<p>While they work the same in principle, binary fractions are different from decimal fractions in what
-numbers they can accurately represent with a given number of digits, and thus also in what numbers result in <a href="/errors/rounding/">rounding errors</a>:</p>
+<h2 id="problemas">Problemas</h2>
 
-<p>Specifically, binary can only represent those numbers as a finite fraction where the denominator
-is a power of 2. Unfortunately, this does not include most of the numbers that can be 
-represented as finite fraction in base 10, like 0.1.</p>
+<p>Aunque funcionan igual en principio, las fracciones binarias son diferentes a las fracciones decimales
+en qué números que se pueden representar con precisión dado un número de dígitos, y por tanto también
+en qué números resultan en <a href="/errors/rounding/">errores de redondeo</a>: concretamente, en binario solo
+se pueden representar como una fracción finita aquellos números en los que el denominador es una
+potencia de 2. Por desgracia, esto no incluye la mayoría de los números que pueden ser representados
+como una fracción finita en base 10, como 0.1.</p>
 
 <table>
   <thead>
     <tr>
-      <th>Fraction</th>
+      <th>Fracción</th>
       <th>Base</th>
-      <th>Positional Notation</th>
-      <th>Rounded to 4 digits</th>
-      <th>Rounded value as fraction</th>
-      <th>Rounding error</th>
+      <th>Notación posicional</th>
+      <th>Redondeado a 4 dígitos</th>
+      <th>Valor redondeado como fracción</th>
+      <th>Error de redondeo</th>
     </tr>
   </thead>
   <tbody>
@@ -120,18 +123,25 @@ represented as finite fraction in base 10, like 0.1.</p>
   </tbody>
 </table>
 
-<p>And this is how you already get a rounding error when you just <em>write down</em> a number like 0.1 and
-run it through your interpreter or compiler. It’s not as big as 3/80 and may be invisible because
-computers cut off after 23 or 52 binary digits rather than 4. But the error is there and <em>will</em> cause
-problems eventually if you just ignore it.</p>
+<p>Y así es como <em>ya</em> obtienes un error de redondeo <em>con solamente escribir</em> un número como 0.1 y
+pasarlo por tu intérprete o compilador. No es tan grande como 3/80 y puede ser invisible porque
+los ordenadores cortan después de 23 o 52 dígitos binarios en vez de 4. Pero el error está ahí
+y <em>causará</em> problemas eventualmente si simplemente lo ignoras.</p>
 
-<h2 id="why-use-binary">Why use Binary?</h2>
-<p>At the lowest level, computers are based on billions of electrical elements that have only two states, (usually low and high voltage). By interpreting these as 0 and 1, it’s very easy to build circuits for storing binary numbers and doing calculations with them.</p>
+<h2 id="por-qu-usar-binario">¿Por qué usar binario?</h2>
 
-<p>While it’s possible to simulate the behaviour of decimal numbers with binary circuits as well, it’s less efficient. If computers used decimal numbers internally, they’d have less memory and be slower at the same level of technology. </p>
+<p>En el nivel más inferior, los ordenadores están basados en miles de millones de elementos eléctricos
+que tienen dos estados (normalmente baja y alta tensión). Interpretándolos como 0 y 1, es muy fácil
+construir circuitos para almacenar números binarios y hacer cálculos con ellos.</p>
 
-<p>Since the difference in behaviour between binary and decimal numbers is not important for most applications, the logical choice is to build computers based on binary numbers and live with the fact
-that some extra care and effort are necessary for applications that require <a href="/formats/exact/">decimal-like behaviour</a>.</p>
+<p>Mientras que es posible simular el comportamiento de los números decimales con circuitos binarios
+también, es menos eficiente. Si los ordenadores usaran números decimales internamente, tendrían
+menos memoria y serían más lentos con el mismo nivel de tecnología.</p>
+
+<p>Puesto que la diferencia de comportamiento entre números binarios y decimales no es importante para
+la mayor parte de las aplicaciones, la elección lógica es construir ordenadores basados en el sistema
+binario y vivir con el hecho de que hay que poner un poco más de atención y esfuerzo para las aplicaciones
+que tienen que funcionar <a href="/formats/exact/">como un número decimal</a>.</p>
 
 			<g:plusone href="http://puntoflotante.org/"></g:plusone>
 			<div id="license">
@@ -142,7 +152,7 @@ that some extra care and effort are necessary for applications that require <a h
 		</div>
     </div>
     <div id="sidebar">
-		<img src="/logo.png">
+		<a href="/"><img src="/logo.png"></a>
 		<h2>La Guía del Punto Flotante</h2>
 		<ul>
 		<li><a href="/">Inicio</a></li>
