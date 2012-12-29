@@ -2,11 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>La Guía del Punto Flotante - Error Propagation</title>
+    <title>La Guía del Punto Flotante - Propagación del error</title>
 	
     <meta name="generator" content="nanoc 3.1.2">
 	
-		<meta name="Description" content="Explanations about propagation of errors in floating-point math.">
+		<meta name="Description" content="Explicaciones sobre la propagación de errores en aritmética de punto flotante">
 	
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
@@ -14,33 +14,29 @@
   </head>
   <body>  
     <div id="main">
-		<h1>Error Propagation</h1>
-      <p>While the errors in single <a href="/formats/fp/">floating-point numbers</a> are very small, even simple calculations on them
-can contain pitfalls that increase the error in the result way beyond just having the individual 
-errors “add up”.</p>
+		<h1>Propagación del error</h1>
+      <p>Aunque los errores en <a href="/formats/fp/">números de punto flotante</a> aislados son muy pequeños,
+operaciones simples con ellos pueden tener problemas e incrementar el error del resultado
+más de lo que se esperaría «sumando» los errores individuales.</p>
 
-<p>In general:</p>
+<p>En general:</p>
 
 <ul>
-  <li>Multiplication and division are “safe” operations</li>
-  <li>Addition and subtraction are dangerous, because when numbers of different magnitudes are involved,
-digits of the smaller-magnitude number are lost.</li>
-  <li>This loss of digits can be inevitable and benign (when the lost digits also insignificant for
-the final result) or catastrophic (when the loss is magnified and distorts the result strongly).</li>
-  <li>The more calculations are done (especially when they form an iterative algorithm) the more important
-it is to consider this kind of problem.</li>
-  <li>A method of calculation can be <em>stable</em> (meaning that it tends to reduce rounding errors) 
-or <em>unstable</em> (meaning that rounding errors are magnified). Very often, there are both stable
-and unstable solutions for a problem.</li>
+  <li>La multiplicación y la división son operaciones «seguras».</li>
+  <li>La suma y la resta son peligrosas, porque cuando hay involucrados números de diferentes órdenes de magnitud, los dígitos del más pequeño se pierden.</li>
+  <li>Esta pérdida de dígitos puede ser inevitable y benigna (cuando los dígitos perdidos son también insignificantes para el resultado final) o catastrófica (cuando la pérdida se amplifica y distorsiona el resultado fuertemente).</li>
+  <li>Cuantas más operaciones se hagan (especialmente cuando forman parte de un algoritmo iterativo) más importante es considerar este problema.</li>
+  <li>Un método de cálculo puede ser <em>estable</em> (tiende a reducir los errores de redondeo) o <em>inestable</em> (los errores de redondeo se amplifican). A menudo, hay soluciones estables e inestables a un problema.</li>
 </ul>
 
-<p>There is an entire sub-field of mathematics (in <a href="http://en.wikipedia.org/wiki/Numerical_analysis">numerical analysis</a>) devoted to studying the numerical stability
-of algorithms. For doing complex calculations involving floating-point numbers, it is absolutely
-necessary to have some understanding of this discipline.</p>
+<p>Hay un área entera de las matemáticas (el <a href="http://es.wikipedia.org/wiki/An%C3%A1lisis_num%C3%A9rico">análisis
+numérico</a>) dedicada a estudiar la
+estabilidad numérica de los algoritmos. Para hacer cálculos complejos utilizando números de punto
+flotante, es absolutamente necesario tener ciertos conocimientos en esta materia.</p>
 
-<p>The article <a href="/references/">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a> gives a detailed introduction,
-and served as an inspiration for creating this website, mainly due to being a bit too detailed and
-intimidating to programmers without a scientific background.</p>
+<p>Este artículo en inglés <a href="/references/">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a>
+da una introducción detallada, y sirvió de inspiración para esta web, principalmente por el hecho
+de que era demasiado minucioso y un poco intimidante para programadores sin una formación científica.</p>
 
 			<g:plusone href="http://puntoflotante.org/"></g:plusone>
 			<div id="license">
