@@ -34,7 +34,7 @@ Por ejemplo:</p>
 diferencia es muy pequeña. El margen de error frente al que se compara esta diferencia
 normalmente se llama <em>epsilon</em>. En su forma más simple:</p>
 
-<pre><code>	if(Math.abs(a-b) &lt; 0.00001) // Mal - no hacer esto
+<pre><code>	if(Math.abs(a-b) &lt; 0.00001) // Mal ─ no hacer esto
 </code></pre>
 
 <p>Esto es una mala forma de hacerlo porque un epsilon fijo elegido porque «parece
@@ -43,7 +43,7 @@ comparan son también muy pequeños. La comparación devolvería «verdadero» p
 números muy diferentes. Y cuando los números son muy grandes, el epsilon
 puede acabar siendo más pequeño que el mínimo error de redondeo, por lo que
 la comparación siempre devolvería «falso». Por tanto, es necesario ver si
-el <em>error relativo</em> es menor epsilon:</p>
+el <em>error relativo</em> es menor que epsilon:</p>
 
 <pre><code>	if(Math.abs((a-b)/b) &lt; 0.00001) // ¡Todavía no es correcto!
 </code></pre>
@@ -88,8 +88,8 @@ esos casos.</p>
 <p>Hay algunos casos en los que el método de arriba todavía produce resultados inesperados
 (concretamente, es mucho más estricto cuando un valor es casi cero que cuando es
 exactamente cero), y algunas de esas pruebas para las que fue desarrollado probablemente
-especifica un comportamiento que no es apropiado para algunas aplicaciones. ¡Antes de
-usarlo, asegúrate de que es adecuado para tu aplicación!</p>
+especifica un comportamiento que no es apropiado para algunas aplicaciones. Antes de
+usarlo, ¡asegúrate de que es adecuado para tu aplicación!</p>
 
 <h2 id="comparando-valores-de-punto-flotante-como-enteros">Comparando valores de punto flotante como enteros</h2>
 
