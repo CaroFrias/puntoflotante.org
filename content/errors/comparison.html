@@ -22,7 +22,7 @@ La solución es comprobar no si los números son exactamente iguales, sino si su
 diferencia es muy pequeña. El margen de error frente al que se compara esta diferencia
 normalmente se llama *epsilon*. En su forma más simple:
 
-		if(Math.abs(a-b) < 0.00001) // Mal - no hacer esto
+		if(Math.abs(a-b) < 0.00001) // Mal ─ no hacer esto
 
 Esto es una mala forma de hacerlo porque un epsilon fijo elegido porque «parece
 pequeño» podría perfectamente ser demasiado grande cuando los números que se
@@ -30,7 +30,7 @@ comparan son también muy pequeños. La comparación devolvería «verdadero» p
 números muy diferentes. Y cuando los números son muy grandes, el epsilon
 puede acabar siendo más pequeño que el mínimo error de redondeo, por lo que
 la comparación siempre devolvería «falso». Por tanto, es necesario ver si
-el *error relativo* es menor epsilon:
+el *error relativo* es menor que epsilon:
 
 		if(Math.abs((a-b)/b) < 0.00001) // ¡Todavía no es correcto!
 
@@ -72,8 +72,8 @@ esos casos.
 Hay algunos casos en los que el método de arriba todavía produce resultados inesperados
 (concretamente, es mucho más estricto cuando un valor es casi cero que cuando es
 exactamente cero), y algunas de esas pruebas para las que fue desarrollado probablemente
-especifica un comportamiento que no es apropiado para algunas aplicaciones. ¡Antes de
-usarlo, asegúrate de que es adecuado para tu aplicación!
+especifica un comportamiento que no es apropiado para algunas aplicaciones. Antes de
+usarlo, ¡asegúrate de que es adecuado para tu aplicación!
 
 Comparando valores de punto flotante como enteros
 -------------------------------------------------
