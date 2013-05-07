@@ -30,7 +30,7 @@ comparan son también muy pequeños. La comparación devolvería «verdadero» p
 números muy diferentes. Y cuando los números son muy grandes, el epsilon
 puede acabar siendo más pequeño que el mínimo error de redondeo, por lo que
 la comparación siempre devolvería «falso». Por tanto, es necesario ver si
-el *error relativo* es menor  a epsilon:
+el *error relativo* es menor que epsilon:
 
 		if(Math.abs((a-b)/b) < 0.00001) // ¡Todavía no es correcto!
 
